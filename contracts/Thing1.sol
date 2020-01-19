@@ -4,6 +4,8 @@ import '@openzeppelin/upgrades/contracts/Initializable.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol';
+import '@openzeppelin/contracts-ethereum-package/contracts/drafts/Counters.sol';
+
 
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Full.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
@@ -23,6 +25,24 @@ contract Thing is
             Ownable
         {
   using SafeMath for uint256;
+  using Counters for Counters.Counter;
+
+  Counters.Counter private counterTokenIds;
+
+
+  /**
+   * @dev Initializer used for tests
+   */
+  function initialize(address owner, address pauser, address minter) public initializer {
+    ERC721.initialize();
+    ERC721Enumerable.initialize();
+    ERC721Metadata.initialize("Thing", "TG1");
+    ERC721Mintable.initialize(minter);
+    ERC721Pausable.initialize(pauser);
+    /// do we need another/instead Pausable.initialize(msg.sender) ???
+    Ownable.initialize(owner);
+  }
+
 
   function initialize() public initializer {
     ERC721.initialize();
@@ -35,13 +55,15 @@ contract Thing is
   }
 
   function kill() public onlyOwner {
-    selfdestruct(owner());
+    address payable owner = address(uint160(owner()));
+    selfdestruct(owner);
   }
 
   /**
-   * On-chain metadata 
+   * On-chain metadata
    */
-  Metadata[] public metadatas;
+  //Metadata[] public metadatas;
+  mapping(uint256 => Metadata) private metadatas;
 
   struct Metadata {
     string name;
@@ -49,15 +71,55 @@ contract Thing is
     uint256 deposit;
   }
 
-  function mint(string calldata name, string calldata picture, uint256 deposit) external {
-    Token memory _token = Token({
-      name: name,
-      format: "obj",
-      price: 0,
-      forSale: false
-    });
-    uint256 tokenId = tokens.push(_token) - 1;
-    super._mint(msg.sender, tokenId);
+
+  function mint(string memory name) public onlyMinter returns (uint256) {
+    return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
   }
+
+  function mint(string memory name, string memory picture, uint256 deposit) public onlyMinter returns (uint256) {
+
+    // Make sure we have a new tokenId with the help of Counter
+    counterTokenIds.increment();
+    uint256 newTokenId = counterTokenIds.current();
+
+    Metadata memory metadata = Metadata({
+      name: name,
+      picture: picture,
+      deposit: deposit
+    });
+
+    //uint256 tokenId = metadatas.push(metadata) - 1;
+    metadatas[newTokenId] = metadata;
+
+    super._mint(msg.sender, newTokenId);
+
+    return newTokenId;
+  }
+
+
+
+  function getTokenMetadata(uint256 tokenId) public view
+    returns (uint256 id,
+             string memory name,
+             string memory picture,
+             uint256 deposit,
+             address owner
+             //address bearer,
+             //bool locked
+             ) {
+
+            Metadata memory metadata = metadatas[tokenId];
+
+            id = tokenId;
+            //name = metadata[tokenId];
+            //description = _description[tokenId];
+            //picture = _picture[tokenId];
+            name = metadata.name;
+            picture = metadata.picture;
+            deposit = metadata.deposit;
+            owner = ownerOf(tokenId);
+            //bearer = bearerOf(tokenId);
+            //locked = isLocked(tokenId);
+    }
 
 }
