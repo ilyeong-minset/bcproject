@@ -282,7 +282,7 @@ contract Thing is
             newToRequiredBalance = currentToRequiredBalance.add(requiredDeposit);
           }
 
-          emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
+          //emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
 
           // we want that the cuurent balance of the receipient (to) to be enought
           require(currentToBalance <= newToRequiredBalance, "Thing: deposit is not enough to borrow this object");
