@@ -59,7 +59,8 @@ contract("thing", async ([_, owner, pauser, minter, ...otherAccounts]) => {
 
   it('protect from illegal minting', async function () {
     await expectRevert(
-      //thing.methods.mint('Test').send({ from: minter }),
+      //thing.methods.mint('Test').send({ from: minter }), //does not work
+      //thing.mint('Test', { from: minter }),  //does not work, I don't understand why
       thing.mint(),
       'MinterRole: caller does not have the Minter role -- Reason given: MinterRole: caller does not have the Minter role.'
     );
