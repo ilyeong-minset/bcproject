@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x2D8BE6BF0baA74e0A907016679CaE9190e80dD0A",
-      "constructorCode": "6080604052615dbd806100136000396000f3fe",
-      "bodyBytecodeHash": "ddec85061853abf5f6aa010186c6ae1e9d36de7c7b0e78ead311bc782f233168",
-      "localBytecodeHash": "2a219a84e56cbbeecaf717b29f310bf012429d62894060418c85da9150f86065",
-      "deployedBytecodeHash": "2a219a84e56cbbeecaf717b29f310bf012429d62894060418c85da9150f86065",
+      "address": "0x5b9b42d6e4B2e4Bf8d42Eba32D46918e10899B66",
+      "constructorCode": "6080604052615f21806100136000396000f3fe",
+      "bodyBytecodeHash": "2cb0a7a3b2b4272bc2837dc6a1730a40ae73e8a32d30744147001f27405adb1c",
+      "localBytecodeHash": "a63af13336a9b3813d5ccf828f90b660c1af5de756048288d706778d01b19eb1",
+      "deployedBytecodeHash": "a63af13336a9b3813d5ccf828f90b660c1af5de756048288d706778d01b19eb1",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -461,7 +461,7 @@
       {
         "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "version": "0.1.0",
-        "implementation": "0x2D8BE6BF0baA74e0A907016679CaE9190e80dD0A",
+        "implementation": "0x5b9b42d6e4B2e4Bf8d42Eba32D46918e10899B66",
         "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
         "kind": "Upgradeable"
       }

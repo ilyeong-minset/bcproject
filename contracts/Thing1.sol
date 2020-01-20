@@ -250,8 +250,12 @@ contract Thing is
     function _borrowFrom(address from, address to, uint256 tokenId) internal {
         require(_exists(tokenId), "Thing: token dont exist");
         require(to != address(0), "Thing: transfer to the zero address");
+        require(to != ownerOf(tokenId), "Thing: you already bear that object");
         require(!isLocked(tokenId), "Thing: token is locked, cant borrow it");
         //require(!paused());//, "Paused");
+
+        address owner = ownerOf(tokenId);
+
 
         // FEATURE 6 : deposit
         uint256 requiredDeposit = metadatas[tokenId].deposit;
@@ -262,26 +266,36 @@ contract Thing is
 
           //uint256 currentFromBalance = balances[from];
           uint256 currentFromRequiredBalance = requiredBalances[from];
-          uint256 newFromRequiredBalance = currentFromRequiredBalance.sub(requiredDeposit);
+          uint256 newFromRequiredBalance;
+          if(from == owner) {
+            newFromRequiredBalance = currentFromRequiredBalance;
+          } else {
+            newFromRequiredBalance = currentFromRequiredBalance.sub(requiredDeposit);
+          }
 
           uint256 currentToBalance = balances[to];
           uint256 currentToRequiredBalance = requiredBalances[to];
-          uint256 newToRequiredBalance = currentToRequiredBalance.add(requiredDeposit);
+          uint256 newToRequiredBalance;
+          if(to == owner) {
+            newToRequiredBalance = currentToRequiredBalance;
+          } else {
+            newToRequiredBalance = currentToRequiredBalance.add(requiredDeposit);
+          }
 
           emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
 
+          // we want that the cuurent balance of the receipient (to) to be enought
           require(currentToBalance <= newToRequiredBalance, "Thing: deposit is not enough to borrow this object");
 
           // we need to update the required balance for both from and to, taking into account that from or to can be the owner
-          requiredBalances[to] = newToRequiredBalance;
           requiredBalances[from] = newFromRequiredBalance;
+          requiredBalances[to] = newToRequiredBalance;
 
 
         }
         // /END FEATURE 6 : deposit
 
 
-        address owner = ownerOf(tokenId);
 
         if(owner != from) {
             _removeTokenFromBearerEnumeration(from, tokenId);
