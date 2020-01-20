@@ -1,11 +1,10 @@
-pragma solidity ^0.5.0; //SEC fix compiler version
+pragma solidity 0.5.11; //SEC fix compiler version
 
 import '@openzeppelin/upgrades/contracts/Initializable.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/drafts/Counters.sol';
-
 
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Full.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
@@ -60,31 +59,34 @@ contract Thing is
   function initialize(address owner, address pauser, address minter) public initializer {
     ERC721.initialize();
     ERC721Enumerable.initialize();
-    ERC721Metadata.initialize("Thing", "TG1");
+    //ERC721Metadata.initialize("Thing", "TG1");
     ERC721Mintable.initialize(minter);
     ERC721Pausable.initialize(pauser);
     /// do we need another/instead
-    Pausable.initialize(pauser);
-    Ownable.initialize(owner);
+    //Pausable.initialize(pauser);
+    //Ownable.initialize(owner);
   }
 
 
   function initialize() public initializer {
     ERC721.initialize();
     ERC721Enumerable.initialize();
-    ERC721Metadata.initialize("Thing", "TG1");
+    //ERC721Metadata.initialize("Thing", "TG1");
     ERC721Mintable.initialize(msg.sender);
     ERC721Pausable.initialize(msg.sender);
     /// do we need another/instead
-    Pausable.initialize(msg.sender);
-    Ownable.initialize(msg.sender);
+    //Pausable.initialize(msg.sender);
+    //Ownable.initialize(msg.sender);
   }
 
   // FEATURE 1 : killable contract
+  // CANCELLED it creates all kinds of problems with OpenZeppelin SDK !!!
+  /*
   function kill() public onlyOwner {
     address payable owner = address(uint160(owner()));
     selfdestruct(owner);
   }
+  */
 
   function mint() public onlyMinter returns (uint256) {
     return mint("Test", "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
@@ -231,7 +233,7 @@ contract Thing is
         require(_exists(tokenId), "Thing: token dont exist");
         require(to != address(0), "Thing: transfer to the zero address");
         // FIXME the two next require don't have any messages because there seems to be a strange bug? in oz sdk? I get a "Thing deployment failed with error: Error: Returned error: execution error: undefined"
-        require(!isLocked(tokenId));//, "Thing: token is locked, cant borrow it");
+        require(!isLocked(tokenId), "Thing: token is locked, cant borrow it");
         require(!paused());//, "Paused");
 
         address owner = ownerOf(tokenId);
@@ -253,9 +255,8 @@ contract Thing is
 
     // FEATURE 5 : locking of token borrowing
     function lockToken(uint256 tokenId) public {
-      require(_exists(tokenId));//, "Thing: token dont exist");
-      //address tokenOwner = ownerOf(tokenId);
-      //require(ownerOf(tokenId) == msg.sender);//, "Thing: only the owner of a token can lock it");
+      require(_exists(tokenId), "token dont exist");
+      //require(ownerOf(tokenId) == msg.sender, "Thing: only the owner of a token can lock it");
 
       locked[tokenId] = true;
     }

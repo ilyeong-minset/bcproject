@@ -16,7 +16,7 @@
         "runs": "200"
       }
     },
-    "solcVersion": "0.5.16"
+    "solcVersion": "0.5.11"
   },
   "telemetryOptIn": true
 }

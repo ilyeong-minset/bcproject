@@ -60,5 +60,10 @@ module.exports = {
       gas: 3000000,
       gasPrice: 10000000000
     }
+  },
+  compilers: {
+    solc: {
+      version: "0.5.11"
+    }
   }
 };
