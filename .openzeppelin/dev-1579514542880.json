@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x1b88Bdb8269A1aB1372459F5a4eC3663D6f5cCc4",
-      "constructorCode": "60806040526152ba806100136000396000f3fe",
-      "bodyBytecodeHash": "b0460d1e1f8c0355116a6d6f81c94dd6978bddadb76c824b848c594c5178270b",
-      "localBytecodeHash": "bdaf918e8df078767d1bfb5223ac7f1dc947ff87ceddbf171d8173949cb9f648",
-      "deployedBytecodeHash": "bdaf918e8df078767d1bfb5223ac7f1dc947ff87ceddbf171d8173949cb9f648",
+      "address": "0x86072CbFF48dA3C1F01824a6761A03F105BCC697",
+      "constructorCode": "6080604052615fe8806100136000396000f3fe",
+      "bodyBytecodeHash": "938342a541dffd387c050c263f2e772c6a5be845fc0f1c9107784aff77553da2",
+      "localBytecodeHash": "5bab3a8a325ce15d91eeff8c2eb0f3f70ad55f71fb986281d2e80c764dab1e40",
+      "deployedBytecodeHash": "5bab3a8a325ce15d91eeff8c2eb0f3f70ad55f71fb986281d2e80c764dab1e40",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -110,21 +110,21 @@
           "members": [
             {
               "label": "name",
-              "astId": 2693,
+              "astId": 2624,
               "type": "t_string",
-              "src": "1985:11:22"
+              "src": "1391:11:22"
             },
             {
               "label": "picture",
-              "astId": 2695,
+              "astId": 2626,
               "type": "t_string",
-              "src": "2002:14:22"
+              "src": "1408:14:22"
             },
             {
               "label": "deposit",
-              "astId": 2697,
+              "astId": 2628,
               "type": "t_uint256",
-              "src": "2022:15:22"
+              "src": "1440:15:22"
             }
           ]
         },
@@ -379,18 +379,58 @@
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
-          "label": "counterTokenIds",
-          "astId": 2624,
-          "type": "t_struct<Counters.Counter>",
-          "src": "1325:40:22"
+          "label": "metadatas",
+          "astId": 2633,
+          "type": "t_mapping<t_struct<Thing.Metadata>>",
+          "src": "1464:46:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
-          "label": "metadatas",
-          "astId": 2691,
-          "type": "t_mapping<t_struct<Thing.Metadata>>",
-          "src": "1912:46:22"
+          "label": "counterTokenIds",
+          "astId": 2635,
+          "type": "t_struct<Counters.Counter>",
+          "src": "1555:40:22"
+        },
+        {
+          "contract": "Thing",
+          "path": "contracts/Thing1.sol",
+          "label": "_tokenBearer",
+          "astId": 2639,
+          "type": "t_mapping<t_address>",
+          "src": "1672:48:22"
+        },
+        {
+          "contract": "Thing",
+          "path": "contracts/Thing1.sol",
+          "label": "_borrowedTokensCount",
+          "astId": 2643,
+          "type": "t_mapping<t_struct<Counters.Counter>>",
+          "src": "1775:66:22"
+        },
+        {
+          "contract": "Thing",
+          "path": "contracts/Thing1.sol",
+          "label": "_bearedTokens",
+          "astId": 2648,
+          "type": "t_mapping<t_array:dyn<t_uint256>>",
+          "src": "1921:51:22"
+        },
+        {
+          "contract": "Thing",
+          "path": "contracts/Thing1.sol",
+          "label": "_bearedTokensIndex",
+          "astId": 2652,
+          "type": "t_mapping<t_uint256>",
+          "src": "2038:54:22"
+        },
+        {
+          "contract": "Thing",
+          "path": "contracts/Thing1.sol",
+          "label": "locked",
+          "astId": 2656,
+          "type": "t_mapping<t_bool>",
+          "src": "2141:39:22"
         }
       ],
       "warnings": {
@@ -427,18 +467,26 @@
           {
             "contract": "Thing",
             "path": "contracts/Thing1.sol",
-            "label": "counterTokenIds",
-            "astId": 2624,
-            "type": "t_struct<Counters.Counter>",
-            "src": "1325:40:22"
+            "label": "metadatas",
+            "astId": 2633,
+            "type": "t_mapping<t_struct<Thing.Metadata>>",
+            "src": "1464:46:22"
           },
           {
             "contract": "Thing",
             "path": "contracts/Thing1.sol",
-            "label": "metadatas",
-            "astId": 2691,
-            "type": "t_mapping<t_struct<Thing.Metadata>>",
-            "src": "1912:46:22"
+            "label": "counterTokenIds",
+            "astId": 2635,
+            "type": "t_struct<Counters.Counter>",
+            "src": "1555:40:22"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "_borrowedTokensCount",
+            "astId": 2643,
+            "type": "t_mapping<t_struct<Counters.Counter>>",
+            "src": "1775:66:22"
           }
         ],
         "storageDiff": []
@@ -449,17 +497,94 @@
   "proxies": {
     "Thing/Thing": [
       {
-        "address": "0x7C728214be9A0049e6a86f2137ec61030D0AA964",
+        "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+        "version": "0.1.0",
+        "implementation": "0x67B5656d60a809915323Bf2C40A8bEF15A152e3e",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
+        "version": "0.1.0",
+        "implementation": "0x26b4AFb60d6C903165150C6F0AA14F8016bE4aec",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
+        "version": "0.1.0",
+        "implementation": "0x0E696947A06550DEf604e82C26fd9E493e576337",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x6eD79Aa1c71FD7BdBC515EfdA3Bd4e26394435cC",
+        "version": "0.1.0",
+        "implementation": "0xA94B7f0465E98609391C623d0560C5720a3f2D33",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xFC628dd79137395F3C9744e33b1c5DE554D94882",
+        "version": "0.1.0",
+        "implementation": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x5f8e26fAcC23FA4cbd87b8d9Dbbd33D5047abDE1",
+        "version": "0.1.0",
+        "implementation": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x21a59654176f2689d12E828B77a783072CD26680",
+        "version": "0.1.0",
+        "implementation": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xD86C8F0327494034F60e25074420BcCF560D5610",
+        "version": "0.1.0",
+        "implementation": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D",
         "version": "0.1.0",
         "implementation": "0x4bf749ec68270027C5910220CEAB30Cc284c7BA2",
-        "admin": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x5017A545b09ab9a30499DE7F431DF0855bCb7275",
+        "version": "0.1.0",
+        "implementation": "0x7C728214be9A0049e6a86f2137ec61030D0AA964",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
         "kind": "Upgradeable"
       },
       {
         "address": "0xFF6049B87215476aBf744eaA3a476cBAd46fB1cA",
         "version": "0.1.0",
-        "implementation": "0x1b88Bdb8269A1aB1372459F5a4eC3663D6f5cCc4",
-        "admin": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D",
+        "implementation": "0x86072CbFF48dA3C1F01824a6761A03F105BCC697",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xA586074FA4Fe3E546A132a16238abe37951D41fE",
+        "version": "0.1.0",
+        "implementation": "0x86072CbFF48dA3C1F01824a6761A03F105BCC697",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x2D8BE6BF0baA74e0A907016679CaE9190e80dD0A",
+        "version": "0.1.0",
+        "implementation": "0x86072CbFF48dA3C1F01824a6761A03F105BCC697",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
         "kind": "Upgradeable"
       }
     ]
@@ -467,13 +592,13 @@
   "manifestVersion": "2.2",
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": {
-      "package": "0x26b4AFb60d6C903165150C6F0AA14F8016bE4aec",
+      "package": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
       "version": "2.4.0",
       "customDeploy": true
     }
   },
   "version": "0.1.0",
   "proxyAdmin": {
-    "address": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D"
+    "address": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66"
   }
 }
