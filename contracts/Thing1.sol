@@ -34,7 +34,7 @@ contract Thing is
 
   // FEATURE 2 : token metadata (on-chain)
   struct Metadata {
-    bytes32 name;
+    string name;
     string picture; //IPFS hash
     uint256 deposit;
   }
@@ -99,20 +99,21 @@ contract Thing is
     selfdestruct(owner);
   }*/
 
-  /*
+
   function mint() public returns (uint256) {
-    return mint("Test", "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
+    return mint("Test", "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 1);
   }
 
+/*
   function mint(string memory name) public returns (uint256) {
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
-  }*/
-
-  function mint(bytes32 name, uint256 deposit) public returns (uint256) {
-    return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", deposit);
   }
 
-  function mint(bytes32 name, string memory picture, uint256 deposit) public onlyMinter returns (uint256) {
+  function mint(string memory name, uint256 deposit) public returns (uint256) {
+    return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", deposit);
+  }*/
+
+  function mint(string memory name, string memory picture, uint256 deposit) public onlyMinter returns (uint256) {
 
     // Make sure we have a new tokenId with the help of Counter
     counterTokenIds.increment();
@@ -132,30 +133,7 @@ contract Thing is
     return newTokenId;
   }
 
-  // FEATURE 2 : token metadata
-  function getTokenMetadata(uint256 tokenId) public view
-    returns (uint256 id,
-             bytes32 name,
-             string memory picture,
-             uint256 deposit,
-             address owner,
-             address bearer,
-             bool lock
-             ) {
 
-            Metadata memory metadata = metadatas[tokenId];
-
-            id = tokenId;
-            //name = metadata[tokenId];
-            //description = _description[tokenId];
-            //picture = _picture[tokenId];
-            name = metadata.name;
-            picture = metadata.picture;
-            deposit = metadata.deposit;
-            owner = ownerOf(tokenId);
-            bearer = bearerOf(tokenId);
-            lock = isLocked(tokenId);
-    }
 
   // FEATURE 4 : borrowing of token
     /**
@@ -174,17 +152,6 @@ contract Thing is
         }
     }
 
-
-    /**
-     * @dev Gets the balance of the specified address.
-     * @param bearer address to query the balance of
-     * @return uint256 representing the amount beared by the passed address
-     */
-    function bearedBalanceOf(address bearer) public view returns (uint256) {
-        require(bearer != address(0), "Things: balance query for the zero address");
-
-        return _borrowedTokensCount[bearer].current();
-    }
 
     /**
      * @dev Private function to add a token to this extension's bearership-tracking data structures.
@@ -281,7 +248,7 @@ contract Thing is
           emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
 
           // we want that the cuurent balance of the receipient (to) to be enought
-          require(currentToBalance <= newToRequiredBalance, "Thing: the deposit is not enough to borrow this object");
+          require(currentToBalance >= newToRequiredBalance, "Thing: deposit is not enough to borrow this object");
 
           // we need to update the required balance for both from and to, taking into account that from or to can be the owner
           requiredBalances[from] = newFromRequiredBalance;
@@ -290,7 +257,6 @@ contract Thing is
 
         }
         // /END FEATURE 6 : deposit
-
 
 
         if(owner != from) {
@@ -305,6 +271,7 @@ contract Thing is
         _tokenBearer[tokenId] = to;
 
     }
+
 
 
 
@@ -326,7 +293,7 @@ contract Thing is
     }*/
 
     // FEATURE 6 : deposit
-    function getBalance() public view returns (uint) {
+    function getDepositBalance() public view returns (uint) {
       return balances[msg.sender];
     }
 
@@ -351,7 +318,7 @@ contract Thing is
       //require(currentBalance > requiredBalance, "not enough");
       uint256 withdrawAmount = currentBalance.sub(requiredBalance);
 
-      // FIXME starts from https://forum.openzeppelin.com/t/openzeppelin-contracts-v2-4/1665
+      // FIXME security, starts from https://forum.openzeppelin.com/t/openzeppelin-contracts-v2-4/1665
       msg.sender.transfer(withdrawAmount);
       balances[msg.sender] = balances[msg.sender].sub(withdrawAmount);
 
@@ -361,6 +328,47 @@ contract Thing is
 
       return newBalance;
     }
+
+
+
+    //////////////////////////
+    // Client / UI functions
+    //////////////////////////
+
+    function getTokensOfBearer() public view returns (uint256[] memory) {
+        return _bearedTokens[msg.sender];
+    }
+
+    function getTokensOfOwner() public view returns (uint256[] memory) {
+      return _tokensOfOwner(msg.sender);
+    }
+
+  function getTokenMetadata(uint256 tokenId) public view
+    returns (uint256 id,
+             string memory name,
+             string memory picture,
+             uint256 deposit,
+             address owner,
+             address bearer,
+             bool lock
+             ) {
+
+            Metadata memory metadata = metadatas[tokenId];
+
+            id = tokenId;
+            //name = metadata[tokenId];
+            //description = _description[tokenId];
+            //picture = _picture[tokenId];
+            name = metadata.name;
+            picture = metadata.picture;
+            deposit = metadata.deposit;
+            owner = ownerOf(tokenId);
+            bearer = bearerOf(tokenId);
+            lock = isLocked(tokenId);
+    }
+
+
+
 
 
 }
