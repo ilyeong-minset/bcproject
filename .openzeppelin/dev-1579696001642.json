@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
-      "constructorCode": "6080604052615e53806100136000396000f3fe",
-      "bodyBytecodeHash": "f8a21c5aab94902cc74800f3ea9b5d3a1748481aadbb5d78d78b3dad26a33a9a",
-      "localBytecodeHash": "cabe6174896eb68935f30665960e86bdf5192f41b174cf11f598860f37bce60c",
-      "deployedBytecodeHash": "cabe6174896eb68935f30665960e86bdf5192f41b174cf11f598860f37bce60c",
+      "address": "0x5f8e26fAcC23FA4cbd87b8d9Dbbd33D5047abDE1",
+      "constructorCode": "6080604052615c2b806100136000396000f3fe",
+      "bodyBytecodeHash": "b6b03eacb497f873c3afe14faa8dba5004e0cd07e86c775343b257ec9d5f4912",
+      "localBytecodeHash": "f49c53ec37eb86a45049c836a44562ac4633a5b27a633c46527078e58f625612",
+      "deployedBytecodeHash": "f49c53ec37eb86a45049c836a44562ac4633a5b27a633c46527078e58f625612",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -100,22 +100,27 @@
             {
               "label": "name",
               "astId": 2391,
-              "type": "t_string",
-              "src": "1655:11:19"
+              "type": "t_bytes32",
+              "src": "1655:12:19"
             },
             {
               "label": "picture",
               "astId": 2393,
               "type": "t_string",
-              "src": "1672:14:19"
+              "src": "1673:14:19"
             },
             {
               "label": "deposit",
               "astId": 2395,
               "type": "t_uint256",
-              "src": "1704:15:19"
+              "src": "1705:15:19"
             }
           ]
+        },
+        "t_bytes32": {
+          "id": "t_bytes32",
+          "kind": "elementary",
+          "label": "bytes32"
         },
         "t_string": {
           "id": "t_string",
@@ -328,7 +333,7 @@
           "label": "metadatas",
           "astId": 2400,
           "type": "t_mapping<t_struct<Thing.Metadata>>",
-          "src": "1728:46:19"
+          "src": "1729:46:19"
         },
         {
           "contract": "Thing",
@@ -336,7 +341,7 @@
           "label": "counterTokenIds",
           "astId": 2402,
           "type": "t_struct<Counters.Counter>",
-          "src": "1819:40:19"
+          "src": "1820:40:19"
         },
         {
           "contract": "Thing",
@@ -344,7 +349,7 @@
           "label": "_tokenBearer",
           "astId": 2406,
           "type": "t_mapping<t_address>",
-          "src": "1936:48:19"
+          "src": "1937:48:19"
         },
         {
           "contract": "Thing",
@@ -352,7 +357,7 @@
           "label": "_borrowedTokensCount",
           "astId": 2410,
           "type": "t_mapping<t_struct<Counters.Counter>>",
-          "src": "2039:66:19"
+          "src": "2040:66:19"
         },
         {
           "contract": "Thing",
@@ -360,7 +365,7 @@
           "label": "_bearedTokens",
           "astId": 2415,
           "type": "t_mapping<t_array:dyn<t_uint256>>",
-          "src": "2185:51:19"
+          "src": "2186:51:19"
         },
         {
           "contract": "Thing",
@@ -368,7 +373,7 @@
           "label": "_bearedTokensIndex",
           "astId": 2419,
           "type": "t_mapping<t_uint256>",
-          "src": "2302:54:19"
+          "src": "2303:54:19"
         },
         {
           "contract": "Thing",
@@ -376,7 +381,7 @@
           "label": "locked",
           "astId": 2423,
           "type": "t_mapping<t_bool>",
-          "src": "2405:39:19"
+          "src": "2406:39:19"
         },
         {
           "contract": "Thing",
@@ -384,7 +389,7 @@
           "label": "balances",
           "astId": 2427,
           "type": "t_mapping<t_uint256>",
-          "src": "2553:44:19"
+          "src": "2554:44:19"
         },
         {
           "contract": "Thing",
@@ -392,7 +397,7 @@
           "label": "requiredBalances",
           "astId": 2431,
           "type": "t_mapping<t_uint256>",
-          "src": "2709:52:19"
+          "src": "2710:52:19"
         }
       ],
       "warnings": {
@@ -432,7 +437,7 @@
             "label": "metadatas",
             "astId": 2400,
             "type": "t_mapping<t_struct<Thing.Metadata>>",
-            "src": "1728:46:19"
+            "src": "1729:46:19"
           },
           {
             "contract": "Thing",
@@ -440,7 +445,7 @@
             "label": "counterTokenIds",
             "astId": 2402,
             "type": "t_struct<Counters.Counter>",
-            "src": "1819:40:19"
+            "src": "1820:40:19"
           },
           {
             "contract": "Thing",
@@ -448,7 +453,7 @@
             "label": "_borrowedTokensCount",
             "astId": 2410,
             "type": "t_mapping<t_struct<Counters.Counter>>",
-            "src": "2039:66:19"
+            "src": "2040:66:19"
           }
         ],
         "storageDiff": []
@@ -483,6 +488,13 @@
         "address": "0xFC628dd79137395F3C9744e33b1c5DE554D94882",
         "version": "0.1.0",
         "implementation": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0x21a59654176f2689d12E828B77a783072CD26680",
+        "version": "0.1.0",
+        "implementation": "0x5f8e26fAcC23FA4cbd87b8d9Dbbd33D5047abDE1",
         "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "kind": "Upgradeable"
       }

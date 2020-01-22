@@ -34,7 +34,7 @@ contract Thing is
 
   // FEATURE 2 : token metadata (on-chain)
   struct Metadata {
-    string name;
+    bytes32 name;
     string picture; //IPFS hash
     uint256 deposit;
   }
@@ -108,11 +108,11 @@ contract Thing is
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
   }*/
 
-  function mint(string memory name, uint256 deposit) public returns (uint256) {
+  function mint(bytes32 name, uint256 deposit) public returns (uint256) {
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", deposit);
   }
 
-  function mint(string memory name, string memory picture, uint256 deposit) public onlyMinter returns (uint256) {
+  function mint(bytes32 name, string memory picture, uint256 deposit) public onlyMinter returns (uint256) {
 
     // Make sure we have a new tokenId with the help of Counter
     counterTokenIds.increment();
@@ -135,7 +135,7 @@ contract Thing is
   // FEATURE 2 : token metadata
   function getTokenMetadata(uint256 tokenId) public view
     returns (uint256 id,
-             string memory name,
+             bytes32 name,
              string memory picture,
              uint256 deposit,
              address owner,
