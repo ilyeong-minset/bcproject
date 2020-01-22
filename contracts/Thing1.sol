@@ -97,16 +97,16 @@ contract Thing is
   function kill() public onlyOwner {
     address payable owner = address(uint160(owner()));
     selfdestruct(owner);
-  }
-  */
+  }*/
 
+  /*
   function mint() public returns (uint256) {
     return mint("Test", "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
   }
 
   function mint(string memory name) public returns (uint256) {
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 0);
-  }
+  }*/
 
   function mint(string memory name, uint256 deposit) public returns (uint256) {
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", deposit);
@@ -165,7 +165,7 @@ contract Thing is
      */
     function bearerOf(uint256 tokenId) public view returns (address) {
         address owner = ownerOf(tokenId);
-        require(owner != address(0), "Things: owner query for nonexistent token");
+        require(owner != address(0), "Thing: owner query for nonexistent token");
 
         if(_tokenBearer[tokenId] != address(0)) {
             return _tokenBearer[tokenId];
@@ -221,9 +221,6 @@ contract Thing is
 
         // This also deletes the contents at the last position of the array
         _bearedTokens[from].length--;
-
-        // Note that _ownedTokensIndex[tokenId] hasn't been cleared: it still points to the old slot (now occupied by
-        // lastTokenId, or just over the end of the array if the token was the last one).
     }
 
 
@@ -250,12 +247,11 @@ contract Thing is
     function _borrowFrom(address from, address to, uint256 tokenId) internal {
         require(_exists(tokenId), "Thing: token dont exist");
         require(to != address(0), "Thing: transfer to the zero address");
-        require(to != ownerOf(tokenId), "Thing: you already bear that object");
+        require(to != bearerOf(tokenId), "Thing: you already bear that object");
         require(!isLocked(tokenId), "Thing: token is locked, cant borrow it");
         //require(!paused());//, "Paused");
 
         address owner = ownerOf(tokenId);
-
 
         // FEATURE 6 : deposit
         uint256 requiredDeposit = metadatas[tokenId].deposit;
@@ -282,10 +278,10 @@ contract Thing is
             newToRequiredBalance = currentToRequiredBalance.add(requiredDeposit);
           }
 
-          //emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
+          emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
 
           // we want that the cuurent balance of the receipient (to) to be enought
-          require(currentToBalance <= newToRequiredBalance, "Thing: deposit is not enough to borrow this object");
+          require(currentToBalance <= newToRequiredBalance, "Thing: the deposit is not enough to borrow this object");
 
           // we need to update the required balance for both from and to, taking into account that from or to can be the owner
           requiredBalances[from] = newFromRequiredBalance;
@@ -346,13 +342,16 @@ contract Thing is
       return balances[msg.sender];
     }
 
-    function withdraw(uint256 withdrawAmount) public payable returns (uint256) {
-      //TODO check that the user can withdraw : he must not bear items with total deposit > of his current balance
-
+    /**
+     * @dev withdraw the max fund authorized, meaning requiredBalance
+     */
+    function withdraw() public payable returns (uint256) {
       uint256 currentBalance = balances[msg.sender];
-      require(currentBalance >= withdrawAmount, "Balance of user is < to attempted withdaw amount.");
+      uint256 requiredBalance = requiredBalances[msg.sender];
+      //require(currentBalance > requiredBalance, "not enough");
+      uint256 withdrawAmount = currentBalance.sub(requiredBalance);
 
-      // FIXME should we use transfer?
+      // FIXME starts from https://forum.openzeppelin.com/t/openzeppelin-contracts-v2-4/1665
       msg.sender.transfer(withdrawAmount);
       balances[msg.sender] = balances[msg.sender].sub(withdrawAmount);
 
