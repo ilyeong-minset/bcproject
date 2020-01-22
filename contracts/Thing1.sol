@@ -10,6 +10,7 @@ import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.s
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol';
 //import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Full.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
+//import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
 //import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Pausable.sol';
 
 /**
@@ -24,6 +25,7 @@ contract Thing is
             , ERC721
             , ERC721Enumerable
             , ERC721Mintable /// Initializable/ERC721/MinterRole
+            , 
             //ERC721Pausable, /// Initializable/ERC721/Pausable
             , Ownable
             , Pausable
@@ -297,10 +299,10 @@ contract Thing is
       return balances[msg.sender];
     }
 
-    function deposit() public payable returns (uint256) {
+    function fundDeposit() public payable returns (uint256) {
       require(msg.value > 0, "Thing: Sent value <= 0");
 
-      //FIXME there is probabl a security problem here
+      //FIXME there is probably a security problem here
       uint256 newBalance = balances[msg.sender].add(msg.value);
       balances[msg.sender] = newBalance;
 

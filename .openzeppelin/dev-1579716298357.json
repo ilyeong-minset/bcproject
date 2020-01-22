@@ -461,7 +461,7 @@
       {
         "address": "0x5f8e26fAcC23FA4cbd87b8d9Dbbd33D5047abDE1",
         "version": "0.1.0",
-        "implementation": "0xb09bCc172050fBd4562da8b229Cf3E45Dc3045A6",
+        "implementation": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D",
         "admin": "0xFC628dd79137395F3C9744e33b1c5DE554D94882",
         "kind": "Upgradeable"
       }
