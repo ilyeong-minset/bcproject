@@ -6,6 +6,9 @@ import '@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.so
 import '@openzeppelin/contracts-ethereum-package/contracts/math/SafeMath.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/drafts/Counters.sol';
 
+import '@openzeppelin/contracts-ethereum-package/contracts/utils/Address.sol';
+import '@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard.sol';
+
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol';
 //import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Full.sol';
@@ -25,13 +28,14 @@ contract Thing is
             , ERC721
             , ERC721Enumerable
             , ERC721Mintable /// Initializable/ERC721/MinterRole
-            , 
-            //ERC721Pausable, /// Initializable/ERC721/Pausable
+            //, ERC721Pausable
             , Ownable
             , Pausable
+            , ReentrancyGuard
         {
   using SafeMath for uint256;
   using Counters for Counters.Counter;
+  using Address for address payable;
 
 
   // FEATURE 2 : token metadata (on-chain)
@@ -71,6 +75,7 @@ contract Thing is
   /**
    * @dev Initializer used for tests
    */
+  /*
   function initialize(address owner, address pauser, address minter) public initializer {
     ERC721.initialize();
     ERC721Enumerable.initialize();
@@ -80,7 +85,8 @@ contract Thing is
     /// do we need another/instead
     Pausable.initialize(pauser);
     Ownable.initialize(owner);
-  }
+    ReentrancyGuard.initialize();
+  }*/
 
 
   function initialize() public initializer {
@@ -90,8 +96,9 @@ contract Thing is
     ERC721Mintable.initialize(msg.sender);
     //ERC721Pausable.initialize(msg.sender);
     /// do we need another/instead
-    //Pausable.initialize(msg.sender);
-    //Ownable.initialize(msg.sender);
+    //Pausable.initialize(msg.sender); FIXME
+    //Ownable.initialize(msg.sender); FIXME
+    ReentrancyGuard.initialize();
   }
 
   // FEATURE 1 : killable contract
@@ -314,14 +321,14 @@ contract Thing is
     /**
      * @dev withdraw the max fund authorized, meaning requiredBalance
      */
-    function withdraw() public payable returns (uint256) {
+    function withdraw() public payable nonReentrant() returns (uint256) {
       uint256 currentBalance = balances[msg.sender];
       uint256 requiredBalance = requiredBalances[msg.sender];
       //require(currentBalance > requiredBalance, "not enough");
       uint256 withdrawAmount = currentBalance.sub(requiredBalance);
 
       // FIXME security, starts from https://forum.openzeppelin.com/t/openzeppelin-contracts-v2-4/1665
-      msg.sender.transfer(withdrawAmount);
+      msg.sender.sendValue(withdrawAmount);
       balances[msg.sender] = balances[msg.sender].sub(withdrawAmount);
 
       uint256 newBalance = balances[msg.sender];
@@ -368,9 +375,5 @@ contract Thing is
             bearer = bearerOf(tokenId);
             lock = isLocked(tokenId);
     }
-
-
-
-
 
 }
