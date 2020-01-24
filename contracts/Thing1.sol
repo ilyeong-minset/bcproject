@@ -321,7 +321,7 @@ contract Thing is
     /**
      * @dev withdraw the max fund authorized, meaning requiredBalance
      */
-    function withdraw() public payable nonReentrant() returns (uint256) {
+    function withdrawDeposit() public payable nonReentrant() returns (uint256) {
       uint256 currentBalance = balances[msg.sender];
       uint256 requiredBalance = requiredBalances[msg.sender];
       //require(currentBalance > requiredBalance, "not enough");

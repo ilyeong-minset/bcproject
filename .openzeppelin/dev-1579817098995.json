@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
+      "address": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
       "constructorCode": "6080604052615e09806100136000396000f3fe",
-      "bodyBytecodeHash": "d1f5578d3aead27d9d19d133f74a540e92dd4420c5bac3fc0daa57df1979c8f0",
-      "localBytecodeHash": "a484544fe9f93b18dce45837d6096a8082f293d000cb19087d1ed0a08d7702a2",
-      "deployedBytecodeHash": "a484544fe9f93b18dce45837d6096a8082f293d000cb19087d1ed0a08d7702a2",
+      "bodyBytecodeHash": "3a2eff49bf524b74c12bf77ec546e53b3901608b21ce4126d0a10ea6dea21765",
+      "localBytecodeHash": "c3de65c25ad2d83e2a1649cfdc6e83d0d1cfb0195e1f8ebb43184b2b81738a5d",
+      "deployedBytecodeHash": "c3de65c25ad2d83e2a1649cfdc6e83d0d1cfb0195e1f8ebb43184b2b81738a5d",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -485,6 +485,13 @@
         "address": "0x0E696947A06550DEf604e82C26fd9E493e576337",
         "version": "0.1.0",
         "implementation": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
+        "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+        "kind": "Upgradeable"
+      },
+      {
+        "address": "0xA94B7f0465E98609391C623d0560C5720a3f2D33",
+        "version": "0.1.0",
+        "implementation": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
         "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "kind": "Upgradeable"
       }
