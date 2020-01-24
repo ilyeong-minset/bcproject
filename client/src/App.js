@@ -25,7 +25,7 @@ import ThingInfo from './components/ThingInfo/index.js';
 //import Footers from "./components/Footers/index.js";
 
 //import Box from "3box";
-import { useWeb3Injected } from "@openzeppelin/network/lib/react";
+//import { useWeb3Injected } from "@openzeppelin/network/lib/react";
 //import logo from './eth-logo.svg';
 
 import "./bootstrap.dark.min.css";
@@ -37,7 +37,7 @@ function App() {
 
   const targetNetworkId = 12345;
 
-  const w3c = useWeb3Injected();
+  //const w3c = useWeb3Injected();
 
   //////////
   // 3Box //
@@ -83,7 +83,7 @@ function App() {
     <Router>
       <div className="App">
         <Topbar /*brandLogo={logo}*/ brandName="Bootcamp project" />
-        <Messages requiredNetwork="12345" />
+        <Messages requiredNetwork={targetNetworkId} />
         <Switch>
           <Route exact path="/">
             <AppMenu menu={menu} />
@@ -111,7 +111,7 @@ function App() {
           </Route>
 
           
-          <Route path="/things/:tid">
+          <Route path="/things/:tokenId">
             <ThingInfo jsonInterface={MyContract} />
           </Route>
           {/*<Route path="/things/borrowed" component={MyThings} />
