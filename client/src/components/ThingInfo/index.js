@@ -68,6 +68,7 @@ function ThingInfo({ jsonInterface }) {
         <ListGroup.Item>Owner: {(account === metadata.owner) ? 'You' : <EthAddress v={metadata.owner} />}</ListGroup.Item>
         <ListGroup.Item>Bearer: {(account === metadata.bearer) ? 'You' : <EthAddress v={metadata.bearer} />}</ListGroup.Item>
         <ListGroup.Item>Deposit required: {metadata.deposit}</ListGroup.Item>
+        {/*<ListGroup.Item>Locked: {metadata.locked}</ListGroup.Item>*/}
         {(account === metadata.bearer) ? '' : <ListGroup.Item action onClick={actionBorrow}>Borrow</ListGroup.Item>}
         <ListGroup.Item><img src={"https://gateway.pinata.cloud/ipfs/"+metadata.picture} alt="The object" /></ListGroup.Item>
       </ListGroup>

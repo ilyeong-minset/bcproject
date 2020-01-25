@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
-      "constructorCode": "6080604052615e09806100136000396000f3fe",
-      "bodyBytecodeHash": "3a2eff49bf524b74c12bf77ec546e53b3901608b21ce4126d0a10ea6dea21765",
-      "localBytecodeHash": "c3de65c25ad2d83e2a1649cfdc6e83d0d1cfb0195e1f8ebb43184b2b81738a5d",
-      "deployedBytecodeHash": "c3de65c25ad2d83e2a1649cfdc6e83d0d1cfb0195e1f8ebb43184b2b81738a5d",
+      "address": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
+      "constructorCode": "6080604052615e55806100136000396000f3fe",
+      "bodyBytecodeHash": "5d1791f6f71d97594f6298688d300f11c1848546207e87c85c47ca18303fd07e",
+      "localBytecodeHash": "f016a0452c3471cfea12216853cc56f63f5358d04ad163cefba64da40d5488e5",
+      "deployedBytecodeHash": "f016a0452c3471cfea12216853cc56f63f5358d04ad163cefba64da40d5488e5",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -416,7 +416,58 @@
         "hasSelfDestruct": false,
         "hasDelegateCall": false,
         "hasInitialValuesInDeclarations": false,
-        "uninitializedBaseContracts": []
+        "uninitializedBaseContracts": [],
+        "storageUncheckedVars": [
+          {
+            "contract": "ERC721",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+            "label": "_ownedTokensCount",
+            "astId": 934,
+            "type": "t_mapping<t_struct<Counters.Counter>>",
+            "src": "1100:63:10"
+          },
+          {
+            "contract": "MinterRole",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol",
+            "label": "_minters",
+            "astId": 132,
+            "type": "t_struct<Roles.Role>",
+            "src": "327:27:2"
+          },
+          {
+            "contract": "PauserRole",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/PauserRole.sol",
+            "label": "_pausers",
+            "astId": 255,
+            "type": "t_struct<Roles.Role>",
+            "src": "327:27:3"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "metadatas",
+            "astId": 2448,
+            "type": "t_mapping<t_struct<Thing.Metadata>>",
+            "src": "2024:46:20"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "counterTokenIds",
+            "astId": 2450,
+            "type": "t_struct<Counters.Counter>",
+            "src": "2115:40:20"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "_borrowedTokensCount",
+            "astId": 2458,
+            "type": "t_mapping<t_struct<Counters.Counter>>",
+            "src": "2335:66:20"
+          }
+        ],
+        "storageDiff": []
       }
     }
   },
@@ -426,7 +477,7 @@
       {
         "address": "0x26b4AFb60d6C903165150C6F0AA14F8016bE4aec",
         "version": "0.1.0",
-        "implementation": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "implementation": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
         "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "kind": "Upgradeable"
       }
