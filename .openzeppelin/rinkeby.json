@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0xCA1D74475c9A40bcff3BBAdEd7c2023B1834A1cF",
-      "constructorCode": "6080604052616000806100136000396000f3fe",
-      "bodyBytecodeHash": "19c73c85f22933b0697fdb77920abc6d87570236d7104ad91d9ebc0a669bcd7e",
-      "localBytecodeHash": "b3864a50c9c88db53e886a7dca48e3e9b5695a93d511b4d57cbe6f9a0bedeac1",
-      "deployedBytecodeHash": "b3864a50c9c88db53e886a7dca48e3e9b5695a93d511b4d57cbe6f9a0bedeac1",
+      "address": "0xD7288c6009699D6498D610C523a364Edf9279a7c",
+      "constructorCode": "6080604052615e55806100136000396000f3fe",
+      "bodyBytecodeHash": "5d1791f6f71d97594f6298688d300f11c1848546207e87c85c47ca18303fd07e",
+      "localBytecodeHash": "f016a0452c3471cfea12216853cc56f63f5358d04ad163cefba64da40d5488e5",
+      "deployedBytecodeHash": "f016a0452c3471cfea12216853cc56f63f5358d04ad163cefba64da40d5488e5",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -99,21 +99,21 @@
           "members": [
             {
               "label": "name",
-              "astId": 2391,
+              "astId": 2439,
               "type": "t_string",
-              "src": "1655:11:19"
+              "src": "1951:11:20"
             },
             {
               "label": "picture",
-              "astId": 2393,
+              "astId": 2441,
               "type": "t_string",
-              "src": "1672:14:19"
+              "src": "1968:14:20"
             },
             {
               "label": "deposit",
-              "astId": 2395,
+              "astId": 2443,
               "type": "t_uint256",
-              "src": "1704:15:19"
+              "src": "2000:15:20"
             }
           ]
         },
@@ -134,25 +134,25 @@
           "contract": "Initializable",
           "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
           "label": "initialized",
-          "astId": 2245,
+          "astId": 2286,
           "type": "t_bool",
-          "src": "757:24:17"
+          "src": "757:24:18"
         },
         {
           "contract": "Initializable",
           "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
           "label": "initializing",
-          "astId": 2247,
+          "astId": 2288,
           "type": "t_bool",
-          "src": "876:25:17"
+          "src": "876:25:18"
         },
         {
           "contract": "Initializable",
           "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
           "label": "______gap",
-          "astId": 2303,
+          "astId": 2344,
           "type": "t_array:50<t_uint256>",
-          "src": "1951:29:17"
+          "src": "1951:29:18"
         },
         {
           "contract": "ERC165",
@@ -323,76 +323,92 @@
           "src": "2163:29:7"
         },
         {
+          "contract": "ReentrancyGuard",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard.sol",
+          "label": "_guardCounter",
+          "astId": 2248,
+          "type": "t_uint256",
+          "src": "733:29:17"
+        },
+        {
+          "contract": "ReentrancyGuard",
+          "path": "@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard.sol",
+          "label": "______gap",
+          "astId": 2281,
+          "type": "t_array:50<t_uint256>",
+          "src": "1563:29:17"
+        },
+        {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "metadatas",
-          "astId": 2400,
+          "astId": 2448,
           "type": "t_mapping<t_struct<Thing.Metadata>>",
-          "src": "1728:46:19"
+          "src": "2024:46:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "counterTokenIds",
-          "astId": 2402,
+          "astId": 2450,
           "type": "t_struct<Counters.Counter>",
-          "src": "1819:40:19"
+          "src": "2115:40:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_tokenBearer",
-          "astId": 2406,
+          "astId": 2454,
           "type": "t_mapping<t_address>",
-          "src": "1936:48:19"
+          "src": "2232:48:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_borrowedTokensCount",
-          "astId": 2410,
+          "astId": 2458,
           "type": "t_mapping<t_struct<Counters.Counter>>",
-          "src": "2039:66:19"
+          "src": "2335:66:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_bearedTokens",
-          "astId": 2415,
+          "astId": 2463,
           "type": "t_mapping<t_array:dyn<t_uint256>>",
-          "src": "2185:51:19"
+          "src": "2481:51:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_bearedTokensIndex",
-          "astId": 2419,
+          "astId": 2467,
           "type": "t_mapping<t_uint256>",
-          "src": "2302:54:19"
+          "src": "2598:54:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "locked",
-          "astId": 2423,
+          "astId": 2471,
           "type": "t_mapping<t_bool>",
-          "src": "2405:39:19"
+          "src": "2701:39:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "balances",
-          "astId": 2427,
+          "astId": 2475,
           "type": "t_mapping<t_uint256>",
-          "src": "2553:44:19"
+          "src": "2849:44:20"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "requiredBalances",
-          "astId": 2431,
+          "astId": 2479,
           "type": "t_mapping<t_uint256>",
-          "src": "2709:52:19"
+          "src": "3005:52:20"
         }
       ],
       "warnings": {
@@ -408,10 +424,10 @@
   "proxies": {
     "Thing/Thing": [
       {
-        "address": "0x52D9DeE6a7Af31c38A056aba522DdB407DAEe997",
+        "address": "0x1A5474ab672e7E5aaBAaa1739D06B284593Bcc2b",
         "version": "0.1.0",
-        "implementation": "0xCA1D74475c9A40bcff3BBAdEd7c2023B1834A1cF",
-        "admin": "0x9213DeCE2b2441De1f1320be468a8B63c141dFE2",
+        "implementation": "0xD7288c6009699D6498D610C523a364Edf9279a7c",
+        "admin": "0x64f63f00555d76aA8B35a8e278bDB864765FFeF5",
         "kind": "Upgradeable"
       }
     ]
@@ -425,6 +441,6 @@
     }
   },
   "proxyAdmin": {
-    "address": "0x9213DeCE2b2441De1f1320be468a8B63c141dFE2"
+    "address": "0x64f63f00555d76aA8B35a8e278bDB864765FFeF5"
   }
 }
