@@ -2846,7 +2846,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-26T15:07:41.996Z",
+  "updatedAt": "2020-01-26T16:52:43.377Z",
   "devdoc": {
     "details": "ERC721 minting logic.",
     "methods": {
