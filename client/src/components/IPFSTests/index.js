@@ -23,8 +23,6 @@ function IPFSTests({ jsonInterface }) {
   const [data, setData] = useState(undefined);
   const [json, setJson] = useState(undefined);
 
-
-
   useEffect(() => {
 
     const fetchData = async () => {

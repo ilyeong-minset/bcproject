@@ -12,7 +12,7 @@ import '@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol';
 //import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Full.sol';
-import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
+import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721MetadataMintable.sol';
 //import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
 //import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Pausable.sol';
 
@@ -27,7 +27,7 @@ contract Thing is
             //ERC721Full,     /// Initializable/ERC721/ERC721Enumerable/ERC721Metadata
             , ERC721
             , ERC721Enumerable
-            , ERC721Mintable /// Initializable/ERC721/MinterRole
+            , ERC721MetadataMintable /// Initializable/ERC721/MinterRole
             //, ERC721Pausable
             , Ownable
             , Pausable
@@ -92,8 +92,8 @@ contract Thing is
   function initialize() public initializer {
     ERC721.initialize();
     ERC721Enumerable.initialize();
-    //ERC721Metadata.initialize("Thing", "TG1");
-    ERC721Mintable.initialize(msg.sender);
+    ERC721Metadata.initialize("Thing", "TG1");
+    ERC721MetadataMintable.initialize(msg.sender);
     //ERC721Pausable.initialize(msg.sender);
     /// do we need another/instead
     //Pausable.initialize(msg.sender); FIXME
@@ -108,10 +108,10 @@ contract Thing is
     selfdestruct(owner);
   }*/
 
-
+/*
   function mint() public returns (uint256) {
     return mint("Test", "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", 1);
-  }
+  }*/
 
 /*
   function mint(string memory name) public returns (uint256) {
@@ -122,23 +122,24 @@ contract Thing is
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", deposit);
   }*/
 
-  function mint(string memory name, string memory picture, uint256 deposit) public onlyMinter returns (uint256) {
+  function mint(string memory metadataIpfsHash, uint256 deposit) public onlyMinter returns (uint256) {
 
     // Make sure we have a new tokenId with the help of Counter
     counterTokenIds.increment();
     uint256 newTokenId = counterTokenIds.current();
 
     Metadata memory metadata = Metadata({
-      name: name,
-      picture: picture,
+      name: "old",
+      picture: "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC",
       deposit: deposit
     });
 
     //uint256 tokenId = metadatas.push(metadata) - 1;
     metadatas[newTokenId] = metadata;
 
-    super._mint(msg.sender, newTokenId);
-
+    //super._mint(msg.sender, newTokenId);
+    super.mintWithTokenURI(msg.sender, newTokenId, metadataIpfsHash);
+    //mintWithTokenURI(address to, uint256 tokenId, string memory tokenURI)
     return newTokenId;
   }
 
