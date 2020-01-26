@@ -11,13 +11,18 @@ function IPFSTests({ jsonInterface }) {
     protocol: "https"
   });
 
-  const CID = 'QmUHXsdbPKKmjKHsBnyvDaX44Pb5soK8Ri3Jb7udMLJuMz'
+  //const CID = 'QmUHXsdbPKKmjKHsBnyvDaX44Pb5soK8Ri3Jb7udMLJuMz'; image no found
+  const CID = 'QmYM4unPgkeLPDcg3vmez2fxYo2ByPWWyUDv18KXknPs4r';
+
+  //const CID = 'QmXtKE3m6gzcTquJU8kxS3SmMveX9HcGWvnF9opgLEcc8t';
+
+  //const CID = 'QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo';
+
+  //const CID = 'QmSXwJFtG2w2XAhmRckFsjJ2fBmvHak8VaktjsjrcVGYr4';
 
   const [data, setData] = useState(undefined);
   const [json, setJson] = useState(undefined);
-  const [name, setName] = useState(undefined);
-  const [description, setDescription] = useState(undefined);
-  const [image, setImage] = useState(undefined);
+
 
 
   useEffect(() => {
@@ -50,9 +55,7 @@ function IPFSTests({ jsonInterface }) {
     if(data && data.content) {
       const json = JSON.parse(data.content.toString('utf8'));
       setJson(json);
-      setName(json.name);
-      setDescription(json.description);
-      setImage(json.image)
+
     }
   }, [data]);
 
@@ -63,7 +66,7 @@ function IPFSTests({ jsonInterface }) {
         <ListGroup>
         <ListGroup.Item>{json.name}</ListGroup.Item>
         <ListGroup.Item>{json.description}</ListGroup.Item>
-        <ListGroup.Item>{json.image}</ListGroup.Item>
+        <ListGroup.Item><img alt="test" src={"https://gateway.pinata.cloud/ipfs/"+json.image} /></ListGroup.Item>
         </ListGroup>
       </>
     );
