@@ -11,6 +11,7 @@ function ThingInfo({ jsonInterface }) {
   const [contractInstance, setContractInstance] = useState(undefined);
   const [metadata, setMetadata] = useState(undefined);
   const [account, setAccount] = useState(undefined);
+  const [change, setChange] = useState(0);
 
   const w3c = useWeb3Injected();
 
@@ -44,7 +45,7 @@ function ThingInfo({ jsonInterface }) {
       fetchMetadata();
     }
   
-  }, [w3c.accounts, contractInstance, tokenId]);
+  }, [w3c.accounts, contractInstance, tokenId, change]);
 
   
   useEffect(() => {
@@ -59,6 +60,11 @@ function ThingInfo({ jsonInterface }) {
   const actionBorrow = useCallback(() => {
     //console.log("account", account);
     contractInstance.methods.borrow(parseInt(tokenId)).send({from: w3c.accounts[0]});
+
+    // trigger an effect 12 sec later to update values
+    setTimeout(() => {
+      setChange(change + 1);
+    }, 12000);
   }, [contractInstance]);
 
   if(metadata) {

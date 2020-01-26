@@ -19925,8 +19925,8 @@
     "4": {
       "links": {},
       "events": {},
-      "address": "0x55cD58E2fe825fa595ccb98fB4bf881955687104",
-      "updated_at": 1580051326621
+      "address": "0xa8278E38d1C2aC30B6b39A231848B6A89610E931",
+      "updated_at": 1580059727580
     },
     "12345": {
       "links": {},
@@ -19936,7 +19936,7 @@
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-26T16:52:43.326Z",
+  "updatedAt": "2020-01-26T17:28:11.164Z",
   "devdoc": {
     "author": "Fred",
     "details": "Upgradable contract built on OpenZeppelin ERC721 implementation with extensions",
