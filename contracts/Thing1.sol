@@ -40,9 +40,9 @@ contract Thing is
 
   // FEATURE 2 : token metadata (on-chain)
   struct Metadata {
-    string name;
-    string picture; //IPFS hash
     uint256 deposit;
+    // FEATURE 5 : locking of token borrowing
+    bool lock;
   }
 
   mapping(uint256 => Metadata) private metadatas;
@@ -61,7 +61,7 @@ contract Thing is
   mapping(uint256 => uint256) private _bearedTokensIndex;
 
   // FEATURE 5 : locking of token borrowing
-  mapping(uint256 => bool) private locked; //array would be very inefficient for this since there is no contains function
+  //mapping(uint256 => bool) private locked; //array would be very inefficient for this since there is no contains function
 
   // FEATURE 6 : deposit
   mapping(address => uint256) private balances;
@@ -129,9 +129,8 @@ contract Thing is
     uint256 newTokenId = counterTokenIds.current();
 
     Metadata memory metadata = Metadata({
-      name: "old",
-      picture: "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC",
-      deposit: deposit
+      deposit: deposit,
+      lock: false
     });
 
     //uint256 tokenId = metadatas.push(metadata) - 1;
@@ -225,7 +224,7 @@ contract Thing is
         require(_exists(tokenId), "Thing: token dont exist");
         require(to != address(0), "Thing: transfer to the zero address");
         require(to != bearerOf(tokenId), "Thing: you already bear that object");
-        require(!isLocked(tokenId), "Thing: token is locked, cant borrow it");
+        // FIXME require(!isLocked(tokenId), "Thing: token is locked, cant borrow it");
         //require(!paused());//, "Paused");
 
         address owner = ownerOf(tokenId);
@@ -286,16 +285,17 @@ contract Thing is
 
 
     // FEATURE 5 : locking of token borrowing
+    /*
     function lockToken(uint256 tokenId) public {
       require(_exists(tokenId), "Thing: token dont exist");
       require(ownerOf(tokenId) == msg.sender, "Thing: only the owner of a token can lock it");
 
       locked[tokenId] = true;
-    }
+    }*/
 
-    function isLocked(uint256 tokenId) public view returns (bool) {
+    /*function isLocked(uint256 tokenId) public view returns (bool) {
         return locked[tokenId];
-    }
+    }*/
 
     /*modifier onlyUnlocked(uint256 tokenId) {
         require(isLocked(tokenId), "Thing: the token is locked");
@@ -357,8 +357,6 @@ contract Thing is
 
   function getTokenMetadata(uint256 tokenId) public view
     returns (uint256 id,
-             string memory name,
-             string memory picture,
              uint256 deposit,
              address owner,
              address bearer,
@@ -368,15 +366,10 @@ contract Thing is
             Metadata memory metadata = metadatas[tokenId];
 
             id = tokenId;
-            //name = metadata[tokenId];
-            //description = _description[tokenId];
-            //picture = _picture[tokenId];
-            name = metadata.name;
-            picture = metadata.picture;
             deposit = metadata.deposit;
             owner = ownerOf(tokenId);
             bearer = bearerOf(tokenId);
-            lock = isLocked(tokenId);
+            lock = metadata.lock;
     }
 
 }
