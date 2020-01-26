@@ -9,7 +9,7 @@ function ThingInfo({ jsonInterface }) {
   let { tokenId } = useParams();
 
   const [contractInstance, setContractInstance] = useState(undefined);
-  const [metadata, setMetadata] = useState(undefined);
+  const [onMD, setOnMD] = useState(undefined);
   const [account, setAccount] = useState(undefined);
   const [change, setChange] = useState(0);
 
@@ -36,13 +36,13 @@ function ThingInfo({ jsonInterface }) {
   }
 
   useEffect(() => {
-    const fetchMetadata = async () => {
+    const fetchOnMD = async () => {
       // FIXME handle error if token does not exist
-      setMetadata(await contractInstance.methods.getTokenMetadata(parseInt(tokenId)).call());
+      setOnMD(await contractInstance.methods.getTokenMetadata(parseInt(tokenId)).call());
     };
     
     if (w3c && w3c.accounts && w3c.accounts[0]) {
-      fetchMetadata();
+      fetchOnMD();
     }
   
   }, [w3c.accounts, contractInstance, tokenId, change]);
@@ -67,15 +67,15 @@ function ThingInfo({ jsonInterface }) {
     }, 12000);
   }, [contractInstance]);
 
-  if(metadata) {
+  if(onMD) {
     return (
       <ListGroup>
-  <ListGroup.Item>{metadata.name} <Badge variant="info">{metadata.id}</Badge></ListGroup.Item>
-        <ListGroup.Item>Owner: {(account === metadata.owner) ? 'You' : <EthAddress v={metadata.owner} />}</ListGroup.Item>
-        <ListGroup.Item>Bearer: {(account === metadata.bearer) ? 'You' : <EthAddress v={metadata.bearer} />}</ListGroup.Item>
-        <ListGroup.Item>Deposit required: {metadata.deposit}</ListGroup.Item>
-        {(account === metadata.bearer) ? '' : <ListGroup.Item action onClick={actionBorrow}>Borrow</ListGroup.Item>}
-        <ListGroup.Item><img src={"https://gateway.pinata.cloud/ipfs/"+metadata.picture} alt="The object" /></ListGroup.Item>
+  <ListGroup.Item>{onMD.name} <Badge variant="info">{onMD.id}</Badge></ListGroup.Item>
+        <ListGroup.Item>Owner: {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
+        <ListGroup.Item>Bearer: {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
+        <ListGroup.Item>Deposit required: {onMD.deposit}</ListGroup.Item>
+        {(account === onMD.bearer) ? '' : <ListGroup.Item action onClick={actionBorrow}>Borrow</ListGroup.Item>}
+        <ListGroup.Item><img src={"https://gateway.pinata.cloud/ipfs/"+onMD.picture} alt="The object" /></ListGroup.Item>
       </ListGroup>
     );
   } else {
