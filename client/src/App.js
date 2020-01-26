@@ -30,7 +30,7 @@ import ThingInfo from './components/ThingInfo/index.js';
 
 import "./bootstrap.dark.min.css";
 
-import MyContract from "./contracts/Thing.json";
+import MyContract from "./contracts-build/Thing.json";
 
 function App() {
   //window.ethereum.enable();

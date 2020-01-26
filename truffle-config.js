@@ -75,7 +75,7 @@ module.exports = {
       gasPrice: 10000000000
     }
   },
-  contracts_build_directory: "./contracts-build",
+  contracts_build_directory: "./client/src/contracts-build",
   compilers: {
     solc: {
       version: "0.5.11",
