@@ -302,12 +302,9 @@ contract Thing is
     }*/
 
     // FEATURE 6 : deposit
-    function getDepositBalances() public view returns (uint256 balance, uint256 requiredBalance) {
-      //TODO, return required deposit too
-      balance = balances[msg.sender];
-      requiredBalance = requiredBalances[msg.sender];
+    function getDepositBalance() public view returns (uint) {
+      return balances[msg.sender];
     }
-
 
     function fundDeposit() public payable returns (uint256) {
       require(msg.value > 0, "Thing: Sent value <= 0");

@@ -2,6 +2,8 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "author": "Fred",
+  "license": "MIT",
   "dependencies": {
     "@bit/lil.baseth.app-menu": "^0.1.0",
     "@bit/lil.baseth.eth-address": "^0.1.0",
