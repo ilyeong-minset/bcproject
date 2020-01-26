@@ -17,6 +17,7 @@ import Web3Info from "@bit/lil.baseth.web3-info";
 import ThingsOwned from './components/ThingsOwned/index.js';
 import ThingInfo from './components/ThingInfo/index.js';
 import Deposit from './components/Deposit/index.js';
+import IPFSTests from './components/IPFSTests/index.js';
 //import  from './components//index.js';
 //import  from './components//index.js';
 //import { EthRpcApi } from "./components/ERC721Utils/index.js";
@@ -64,7 +65,8 @@ function App() {
     "Web3 Info": "/web3info",
     "Things I own": "/things/owned",
     "Things I have borrowed": "/things/beared",
-    "Deposit Management": "/deposit"
+    "Deposit Management": "/deposit",
+    "IPFS Tests": "/ipfstests"
     //"Metamask Info": "/metamaskinfo",
     //"Contract Info": "/contractinfo",
     //Blocks: "/blocks",
@@ -109,7 +111,7 @@ function App() {
             />
   </Route>]*/}
 
-
+          {/* always keep it before  */}
           <Route exact path="/things/owned">
             <ThingsOwned jsonInterface={MyContract} />
           </Route>
@@ -118,10 +120,12 @@ function App() {
             <ThingInfo jsonInterface={MyContract} />
           </Route>
 
-
-
           <Route path="/deposit">
             <Deposit jsonInterface={MyContract} />
+          </Route>
+
+          <Route path="/ipfstests">
+            <IPFSTests jsonInterface={MyContract} />
           </Route>
 
           {/*<Route path="/things/borrowed" component={MyThings} />
