@@ -109,14 +109,16 @@ function App() {
             />
   </Route>]*/}
 
-          
+
+          <Route exact path="/things/owned">
+            <ThingsOwned jsonInterface={MyContract} />
+          </Route>
+
           <Route path="/things/:tokenId">
             <ThingInfo jsonInterface={MyContract} />
           </Route>
 
-          <Route path="/things/owned">
-            <ThingsOwned jsonInterface={MyContract} />
-          </Route>
+
 
           <Route path="/deposit">
             <Deposit jsonInterface={MyContract} />

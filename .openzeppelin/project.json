@@ -9,7 +9,7 @@
   "name": "Thing",
   "version": "0.1.0",
   "compiler": {
-    "manager": "openzeppelin",
+    "manager": "truffle",
     "compilerSettings": {
       "optimizer": {
         "enabled": false,

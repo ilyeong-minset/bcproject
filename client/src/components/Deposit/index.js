@@ -5,6 +5,7 @@ import { ListGroup, Alert } from "react-bootstrap";
 function Deposit({ jsonInterface }) {
 
   const [contractInstance, setContractInstance] = useState(undefined);
+  const [contractAddress, setContractAddress] = useState(undefined);
   const [balances, setBalances] = useState(undefined);
   const [withdrawValue, setWithdrawValue] = useState(undefined);
   const [fundValue, setFundValue] = useState(undefined);
@@ -13,7 +14,7 @@ function Deposit({ jsonInterface }) {
   const w3c = useWeb3Injected();
 
   useEffect(() => {
-    //console.log("w3c", w3c);
+    console.log("w3c", w3c);
     //console.log("w3c.networkId", w3c.networkId);
     //console.log("jsonInterface", jsonInterface);
     loadContract(w3c, jsonInterface, w3c.networkId);
@@ -26,6 +27,8 @@ function Deposit({ jsonInterface }) {
       if (networkId === w3c.networkId) {
         setContractInstance(new w3c.lib.eth.Contract(jsonInterface.abi, address));
         //console.log("new w3c.lib.eth.Contract(jsonInterface.abi, address)", new w3c.lib.eth.Contract(jsonInterface.abi, address));
+        setContractAddress(address);
+
       }
     }
   }
@@ -48,7 +51,7 @@ function Deposit({ jsonInterface }) {
   // some nice examples https://github.com/status-im/sticker-market/blob/9bcc786d0f20f16ec2239af359edb0c9e0952659/app/components/erc20token.js
 
   const fundDeposit = async () => {
-    setFundValue(contractInstance.methods.fundDeposit().send({from: w3c.accounts[0], value: 1000000}));
+    setFundValue(await contractInstance.methods.fundDeposit().send({from: w3c.accounts[0], gasLimit: 7000000,  value: 55}));
   };
 
   /*  const fundDeposit = async () => {
@@ -81,7 +84,10 @@ function Deposit({ jsonInterface }) {
 
   if(!balances) {
     return (
-      <Alert key="loading" variant="secondary">Loading...</Alert>
+      <>
+        <Alert key="loading" variant="secondary">Loading...</Alert>
+        <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
+      </>
     );
   } /*else if()) {
     return (
@@ -91,12 +97,15 @@ function Deposit({ jsonInterface }) {
     );
   }*/ else {
     return (
+      <>
+      <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
       <ListGroup>
         <ListGroup.Item>Your balance: {balances.balance}</ListGroup.Item>
         <ListGroup.Item action onClick={fundDeposit}>Fund deposit (last funded value: {/*fundValue*/})</ListGroup.Item>
         <ListGroup.Item>Your required balance: {balances.requiredBalance} (according to the <a href="/things/borrowed">objects you are borrowing</a>)</ListGroup.Item>
         <ListGroup.Item action onClick={withdrawDeposit}>Withdraw deposit (last value: {withdrawValue})</ListGroup.Item>      
       </ListGroup>
+      </>
     );
   }
 }
