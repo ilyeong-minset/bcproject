@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
-      "constructorCode": "6080604052613be8806100136000396000f3fe",
-      "bodyBytecodeHash": "92fb4448a2362eac18734a8ef3a7c7e72cd91b52e03390642e554544f349900f",
-      "localBytecodeHash": "e188b4ac46edd229852b4c25ceb1f9ed831f035cbabc2453c1ea6d42a0871988",
-      "deployedBytecodeHash": "e188b4ac46edd229852b4c25ceb1f9ed831f035cbabc2453c1ea6d42a0871988",
+      "address": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
+      "constructorCode": "6080604052615fde806100136000396000f3fe",
+      "bodyBytecodeHash": "8c87db4a300658ac2525e4b057579b25d64f9712236f187f67505c3895b6f2c2",
+      "localBytecodeHash": "91981d7196ea48df398d0c936e780c0db99f89b149ca1820b3fa009d8f18709c",
+      "deployedBytecodeHash": "91981d7196ea48df398d0c936e780c0db99f89b149ca1820b3fa009d8f18709c",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -48,9 +48,9 @@
           "members": [
             {
               "label": "_value",
-              "astId": 1085,
+              "astId": 364,
               "type": "t_uint256",
-              "src": "1024:14:6"
+              "src": "1024:14:4"
             }
           ]
         },
@@ -97,9 +97,9 @@
           "members": [
             {
               "label": "bearer",
-              "astId": 756,
+              "astId": 35,
               "type": "t_mapping<t_bool>",
-              "src": "150:32:3"
+              "src": "150:32:1"
             }
           ]
         },
@@ -110,15 +110,15 @@
           "members": [
             {
               "label": "deposit",
-              "astId": 93,
+              "astId": 2596,
               "type": "t_uint256",
-              "src": "1967:15:1"
+              "src": "1967:15:22"
             },
             {
               "label": "lock",
-              "astId": 95,
+              "astId": 2598,
               "type": "t_bool",
-              "src": "2034:9:1"
+              "src": "2034:9:22"
             }
           ]
         },
@@ -134,305 +134,305 @@
           "contract": "Initializable",
           "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
           "label": "initialized",
-          "astId": 3164,
+          "astId": 2443,
           "type": "t_bool",
-          "src": "757:24:22"
+          "src": "757:24:20"
         },
         {
           "contract": "Initializable",
           "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
           "label": "initializing",
-          "astId": 3166,
+          "astId": 2445,
           "type": "t_bool",
-          "src": "876:25:22"
+          "src": "876:25:20"
         },
         {
           "contract": "Initializable",
           "path": "@openzeppelin/upgrades/contracts/Initializable.sol",
           "label": "______gap",
-          "astId": 3222,
+          "astId": 2501,
           "type": "t_array:50<t_uint256>",
-          "src": "1951:29:22"
+          "src": "1951:29:20"
         },
         {
           "contract": "ERC165",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/introspection/ERC165.sol",
           "label": "_supportedInterfaces",
-          "astId": 1141,
+          "astId": 420,
           "type": "t_mapping<t_bool>",
-          "src": "565:52:7"
+          "src": "565:52:5"
         },
         {
           "contract": "ERC165",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/introspection/ERC165.sol",
           "label": "______gap",
-          "astId": 1186,
+          "astId": 465,
           "type": "t_array:50<t_uint256>",
-          "src": "1729:29:7"
+          "src": "1729:29:5"
         },
         {
           "contract": "ERC721",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
           "label": "_tokenOwner",
-          "astId": 1647,
+          "astId": 926,
           "type": "t_mapping<t_address>",
-          "src": "886:48:12"
+          "src": "886:48:10"
         },
         {
           "contract": "ERC721",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
           "label": "_tokenApprovals",
-          "astId": 1651,
+          "astId": 930,
           "type": "t_mapping<t_address>",
-          "src": "990:52:12"
+          "src": "990:52:10"
         },
         {
           "contract": "ERC721",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
           "label": "_ownedTokensCount",
-          "astId": 1655,
+          "astId": 934,
           "type": "t_mapping<t_struct<Counters.Counter>>",
-          "src": "1100:63:12"
+          "src": "1100:63:10"
         },
         {
           "contract": "ERC721",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
           "label": "_operatorApprovals",
-          "astId": 1661,
+          "astId": 940,
           "type": "t_mapping<t_bool>",
-          "src": "1218:73:12"
+          "src": "1218:73:10"
         },
         {
           "contract": "ERC721",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
           "label": "______gap",
-          "astId": 2273,
+          "astId": 1552,
           "type": "t_array:50<t_uint256>",
-          "src": "15262:29:12"
+          "src": "15262:29:10"
         },
         {
           "contract": "ERC721Enumerable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol",
           "label": "_ownedTokens",
-          "astId": 2296,
+          "astId": 1575,
           "type": "t_mapping<t_array:dyn<t_uint256>>",
-          "src": "502:50:13"
+          "src": "502:50:11"
         },
         {
           "contract": "ERC721Enumerable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol",
           "label": "_ownedTokensIndex",
-          "astId": 2300,
+          "astId": 1579,
           "type": "t_mapping<t_uint256>",
-          "src": "622:53:13"
+          "src": "622:53:11"
         },
         {
           "contract": "ERC721Enumerable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol",
           "label": "_allTokens",
-          "astId": 2303,
+          "astId": 1582,
           "type": "t_array:dyn<t_uint256>",
-          "src": "736:28:13"
+          "src": "736:28:11"
         },
         {
           "contract": "ERC721Enumerable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol",
           "label": "_allTokensIndex",
-          "astId": 2307,
+          "astId": 1586,
           "type": "t_mapping<t_uint256>",
-          "src": "835:51:13"
+          "src": "835:51:11"
         },
         {
           "contract": "ERC721Enumerable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol",
           "label": "______gap",
-          "astId": 2638,
+          "astId": 1917,
           "type": "t_array:50<t_uint256>",
-          "src": "9053:29:13"
+          "src": "9053:29:11"
         },
         {
           "contract": "ERC721Metadata",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Metadata.sol",
           "label": "_name",
-          "astId": 2658,
+          "astId": 1937,
           "type": "t_string",
-          "src": "323:20:14"
+          "src": "323:20:12"
         },
         {
           "contract": "ERC721Metadata",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Metadata.sol",
           "label": "_symbol",
-          "astId": 2660,
+          "astId": 1939,
           "type": "t_string",
-          "src": "370:22:14"
+          "src": "370:22:12"
         },
         {
           "contract": "ERC721Metadata",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Metadata.sol",
           "label": "_tokenURIs",
-          "astId": 2664,
+          "astId": 1943,
           "type": "t_mapping<t_string>",
-          "src": "438:45:14"
+          "src": "438:45:12"
         },
         {
           "contract": "ERC721Metadata",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Metadata.sol",
           "label": "______gap",
-          "astId": 2795,
+          "astId": 2074,
           "type": "t_array:50<t_uint256>",
-          "src": "3086:29:14"
+          "src": "3086:29:12"
         },
         {
           "contract": "MinterRole",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol",
           "label": "_minters",
-          "astId": 853,
+          "astId": 132,
           "type": "t_struct<Roles.Role>",
-          "src": "327:27:4"
+          "src": "327:27:2"
         },
         {
           "contract": "MinterRole",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol",
           "label": "______gap",
-          "astId": 953,
+          "astId": 232,
           "type": "t_array:50<t_uint256>",
-          "src": "1193:29:4"
+          "src": "1193:29:2"
         },
         {
           "contract": "ERC721MetadataMintable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721MetadataMintable.sol",
           "label": "______gap",
-          "astId": 2865,
+          "astId": 2144,
           "type": "t_array:50<t_uint256>",
-          "src": "1057:29:15"
+          "src": "1057:29:13"
         },
         {
           "contract": "Ownable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol",
           "label": "_owner",
-          "astId": 1499,
+          "astId": 778,
           "type": "t_address",
-          "src": "526:22:11"
+          "src": "526:22:9"
         },
         {
           "contract": "Ownable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/ownership/Ownable.sol",
           "label": "______gap",
-          "astId": 1612,
+          "astId": 891,
           "type": "t_array:50<t_uint256>",
-          "src": "2471:29:11"
+          "src": "2471:29:9"
         },
         {
           "contract": "PauserRole",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/PauserRole.sol",
           "label": "_pausers",
-          "astId": 976,
+          "astId": 255,
           "type": "t_struct<Roles.Role>",
-          "src": "327:27:5"
+          "src": "327:27:3"
         },
         {
           "contract": "PauserRole",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/PauserRole.sol",
           "label": "______gap",
-          "astId": 1076,
+          "astId": 355,
           "type": "t_array:50<t_uint256>",
-          "src": "1193:29:5"
+          "src": "1193:29:3"
         },
         {
           "contract": "Pausable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.sol",
           "label": "_paused",
-          "astId": 1218,
+          "astId": 497,
           "type": "t_bool",
-          "src": "909:20:9"
+          "src": "909:20:7"
         },
         {
           "contract": "Pausable",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/lifecycle/Pausable.sol",
           "label": "______gap",
-          "astId": 1301,
+          "astId": 580,
           "type": "t_array:50<t_uint256>",
-          "src": "2163:29:9"
+          "src": "2163:29:7"
         },
         {
           "contract": "ReentrancyGuard",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard.sol",
           "label": "_guardCounter",
-          "astId": 3126,
+          "astId": 2405,
           "type": "t_uint256",
-          "src": "733:29:21"
+          "src": "733:29:19"
         },
         {
           "contract": "ReentrancyGuard",
           "path": "@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard.sol",
           "label": "______gap",
-          "astId": 3159,
+          "astId": 2438,
           "type": "t_array:50<t_uint256>",
-          "src": "1563:29:21"
+          "src": "1563:29:19"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "metadatas",
-          "astId": 100,
+          "astId": 2603,
           "type": "t_mapping<t_struct<Thing.Metadata>>",
-          "src": "2052:46:1"
+          "src": "2052:46:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "counterTokenIds",
-          "astId": 102,
+          "astId": 2605,
           "type": "t_struct<Counters.Counter>",
-          "src": "2143:40:1"
+          "src": "2143:40:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_tokenBearer",
-          "astId": 106,
+          "astId": 2609,
           "type": "t_mapping<t_address>",
-          "src": "2260:48:1"
+          "src": "2260:48:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_borrowedTokensCount",
-          "astId": 110,
+          "astId": 2613,
           "type": "t_mapping<t_struct<Counters.Counter>>",
-          "src": "2363:66:1"
+          "src": "2363:66:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_bearedTokens",
-          "astId": 115,
+          "astId": 2618,
           "type": "t_mapping<t_array:dyn<t_uint256>>",
-          "src": "2509:51:1"
+          "src": "2509:51:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "_bearedTokensIndex",
-          "astId": 119,
+          "astId": 2622,
           "type": "t_mapping<t_uint256>",
-          "src": "2626:54:1"
+          "src": "2626:54:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "balances",
-          "astId": 123,
+          "astId": 2626,
           "type": "t_mapping<t_uint256>",
-          "src": "2879:44:1"
+          "src": "2879:44:22"
         },
         {
           "contract": "Thing",
           "path": "contracts/Thing1.sol",
           "label": "requiredBalances",
-          "astId": 127,
+          "astId": 2630,
           "type": "t_mapping<t_uint256>",
-          "src": "3035:52:1"
+          "src": "3035:52:22"
         }
       ],
       "warnings": {
@@ -440,7 +440,58 @@
         "hasSelfDestruct": false,
         "hasDelegateCall": false,
         "hasInitialValuesInDeclarations": false,
-        "uninitializedBaseContracts": []
+        "uninitializedBaseContracts": [],
+        "storageUncheckedVars": [
+          {
+            "contract": "ERC721",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol",
+            "label": "_ownedTokensCount",
+            "astId": 934,
+            "type": "t_mapping<t_struct<Counters.Counter>>",
+            "src": "1100:63:10"
+          },
+          {
+            "contract": "MinterRole",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/MinterRole.sol",
+            "label": "_minters",
+            "astId": 132,
+            "type": "t_struct<Roles.Role>",
+            "src": "327:27:2"
+          },
+          {
+            "contract": "PauserRole",
+            "path": "@openzeppelin/contracts-ethereum-package/contracts/access/roles/PauserRole.sol",
+            "label": "_pausers",
+            "astId": 255,
+            "type": "t_struct<Roles.Role>",
+            "src": "327:27:3"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "metadatas",
+            "astId": 2603,
+            "type": "t_mapping<t_struct<Thing.Metadata>>",
+            "src": "2052:46:22"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "counterTokenIds",
+            "astId": 2605,
+            "type": "t_struct<Counters.Counter>",
+            "src": "2143:40:22"
+          },
+          {
+            "contract": "Thing",
+            "path": "contracts/Thing1.sol",
+            "label": "_borrowedTokensCount",
+            "astId": 2613,
+            "type": "t_mapping<t_struct<Counters.Counter>>",
+            "src": "2363:66:22"
+          }
+        ],
+        "storageDiff": []
       }
     }
   },
@@ -450,7 +501,7 @@
       {
         "address": "0x26b4AFb60d6C903165150C6F0AA14F8016bE4aec",
         "version": "0.1.0",
-        "implementation": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "implementation": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
         "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "kind": "Upgradeable"
       }

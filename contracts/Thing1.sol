@@ -122,7 +122,7 @@ contract Thing is
     return mint(name, "QmWzq3Kjxo3zSeS3KRxT6supq9k7ZBRcVGGxAkJmpYtMNC", deposit);
   }*/
 
-  function mint(string memory metadataIpfsHash, uint256 deposit) public onlyMinter returns (uint256) {
+  function mint(string memory metadataIpfsHash, uint256 deposit) public onlyMinter whenNotPaused returns (uint256) {
 
     // Make sure we have a new tokenId with the help of Counter
     counterTokenIds.increment();
@@ -211,7 +211,7 @@ contract Thing is
         _borrowFrom(bearerOf(tokenId), msg.sender, tokenId);
     }
 
-    event Debug(uint256 requiredDeposit, uint256 currentBalance, uint256 currentRequiredBalance, uint256 newRequiredBalance);
+    //event Debug(uint256 requiredDeposit, uint256 currentBalance, uint256 currentRequiredBalance, uint256 newRequiredBalance);
 
     /**
      * @dev Internal function to borrow a given token ID.
@@ -220,7 +220,7 @@ contract Thing is
      * @param to receipient
      * @param tokenId uint256 ID of the token to be transferred
      */
-    function _borrowFrom(address from, address to, uint256 tokenId) internal {
+    function _borrowFrom(address from, address to, uint256 tokenId) internal whenNotPaused {
         require(_exists(tokenId), "Thing: token dont exist");
         require(to != address(0), "Thing: transfer to the zero address");
         require(to != bearerOf(tokenId), "Thing: you already bear that object");
@@ -254,7 +254,7 @@ contract Thing is
             newToRequiredBalance = currentToRequiredBalance.add(requiredDeposit);
           }
 
-          emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
+          //emit Debug(requiredDeposit, currentToBalance, currentToRequiredBalance, newToRequiredBalance);
 
           // we want that the cuurent balance of the receipient (to) to be enought
           require(currentToBalance >= newToRequiredBalance, "Thing: deposit is not enough to borrow this object");
@@ -309,7 +309,7 @@ contract Thing is
     }
 
 
-    function fundDeposit() public payable returns (uint256) {
+    function fundDeposit() public payable whenNotPaused returns (uint256) {
       require(msg.value > 0, "Thing: Sent value <= 0");
 
       //FIXME there is probably a security problem here
@@ -324,7 +324,7 @@ contract Thing is
     /**
      * @dev withdraw the max fund authorized, meaning requiredBalance
      */
-    function withdrawDeposit() public payable nonReentrant() returns (uint256) {
+    function withdrawDeposit() public payable whenNotPaused nonReentrant returns (uint256) {
       uint256 currentBalance = balances[msg.sender];
       uint256 requiredBalance = requiredBalances[msg.sender];
       //require(currentBalance > requiredBalance, "not enough");
