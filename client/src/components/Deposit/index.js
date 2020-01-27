@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useWeb3Injected } from '@openzeppelin/network/lib/react';
-import { ListGroup, Alert, Button, Form } from "react-bootstrap";
+import { ListGroup, Alert } from "react-bootstrap";
 
 function Deposit({ jsonInterface }) {
 

@@ -26,15 +26,16 @@ function EnsInfo({ jsonInterface }) {
   if (resultAddress) {
     return (
       <>
-      <Alert key="loading" variant="danger">For this one to work you have to set Metamask on Mainnet</Alert>
+        <Alert key="network3-alert" variant="danger">Ignore previous global message, for this one to work you have to set Metamask on Mainnet (where ENS is)</Alert>
         <ListGroup>
-    <ListGroup.Item>{name} resolves to {resultAddress} on ENS (queried with web3.js)</ListGroup.Item>
+    <ListGroup.Item><b>{name}</b> resolves to <code>{resultAddress}</code> on ENS (queried with web3.js)</ListGroup.Item>
         </ListGroup>
       </>
     );
   } else {
     return (
       <>
+        <Alert key="network4-alert" variant="danger">Ignore previous global message, for this one to work you have to set Metamask on Mainnet (where ENS is)</Alert>
         <Alert key="loading" variant="secondary">Loading... are you on Mainnet?</Alert>
       </>
     );

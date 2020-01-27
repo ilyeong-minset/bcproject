@@ -1,5 +1,6 @@
 import React, { /*useState, useEffect*/ } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ListGroup } from "react-bootstrap";
 
 import Topbar from "@bit/lil.baseth.topbar";
 import AppMenu from "@bit/lil.baseth.app-menu";
@@ -147,6 +148,12 @@ function App() {
 
           <Route path="/ipfsutils" component={IpfsUpload} />
 
+          <Route path="/fund">
+            <ListGroup>
+              <ListGroup.Item>On a local dev net (ganache), you have a 100 eth on the first addresses</ListGroup.Item>
+              <ListGroup.Item>On public testnets, you have to fund you account on faucets (such as <a href="https://faucet.rinkeby.io/">the Rinkeby faucet</a>)</ListGroup.Item>
+            </ListGroup>
+          </Route>
 
           {/*<Route path="/things/borrowed" component={MyThings} />
           <Route path="/things/add" component={Thing} />

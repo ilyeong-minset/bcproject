@@ -70,8 +70,8 @@ class UportInfo extends Component {
 
     return (
       <>
-        <Alert key="loading" variant="danger">Ignore previous global message, for this one to work you have to set Metamask on Rinkeby</Alert>
-        <Alert key="loading" variant="danger">uPort is kind of slow, sometime you have to click several time or wait (same on their own web apps & mobile)</Alert>
+        <Alert key="network2-alert" variant="danger">Ignore previous global message, for this one to work you have to set Metamask on Rinkeby</Alert>
+        <Alert key="uport-alert" variant="danger">uPort is kind of slow, sometime you have to click several time or wait (same on their own web apps & mobile)</Alert>
         <ListGroup>
           <ListGroup.Item active action onClick={this.connectUport}>Click to connect uPort</ListGroup.Item>
           <ListGroup.Item>DID App Id: <code>{appId}</code></ListGroup.Item>
