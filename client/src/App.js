@@ -18,6 +18,7 @@ import ThingsOwned from './components/ThingsOwned/index.js';
 import ThingInfo from './components/ThingInfo/index.js';
 import Deposit from './components/Deposit/index.js';
 import IPFSTests from './components/IPFSTests/index.js';
+import EnsInfo from "./components/EnsInfo/index.js";
 //import  from './components//index.js';
 //import  from './components//index.js';
 //import { EthRpcApi } from "./components/ERC721Utils/index.js";
@@ -67,7 +68,8 @@ function App() {
     "Things I own": "/things/owned",
     "Things I have borrowed": "/things/beared",
     "Deposit Management": "/deposit",
-    "IPFS Tests": "/ipfstests"
+    "IPFS Tests": "/ipfstests",
+    "ENS Info": "/ensinfo"
     //"Metamask Info": "/metamaskinfo",
     //"Contract Info": "/contractinfo",
     //Blocks: "/blocks",
@@ -127,6 +129,10 @@ function App() {
 
           <Route path="/ipfstests">
             <IPFSTests jsonInterface={MyContract} />
+          </Route>
+
+          <Route path="/ensinfo">
+            <EnsInfo />
           </Route>
 
           {/*<Route path="/things/borrowed" component={MyThings} />

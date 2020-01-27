@@ -504,6 +504,13 @@
         "implementation": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
         "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "kind": "Upgradeable"
+      },
+      {
+        "address": "0x6eD79Aa1c71FD7BdBC515EfdA3Bd4e26394435cC",
+        "version": "0.1.0",
+        "implementation": "0xDb56f2e9369E0D7bD191099125a3f6C370F8ed15",
+        "admin": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+        "kind": "Upgradeable"
       }
     ]
   },
