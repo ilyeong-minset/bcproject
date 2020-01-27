@@ -27,19 +27,20 @@ import IPFSTests from './components/IPFSTests/index.js';
 //import Footers from "./components/Footers/index.js";
 
 //import Box from "3box";
-//import { useWeb3Injected } from "@openzeppelin/network/lib/react";
+import { useWeb3Injected } from "@openzeppelin/network/lib/react";
 //import logo from './eth-logo.svg';
 
 import "./bootstrap.dark.min.css";
 
 import MyContract from "./contracts-build/Thing.json";
+import { Alert } from "react-bootstrap";
 
 function App() {
   //window.ethereum.enable();
 
   const targetNetworkId = 12345;
 
-  //const w3c = useWeb3Injected();
+  const w3c = useWeb3Injected();
 
   //////////
   // 3Box //
@@ -138,6 +139,7 @@ function App() {
           <Route path="*" component={NotFound} />*/}
         </Switch>
         <Footers message={footerMessage} />
+        <Alert>Current account: {w3c.accounts[0]}</Alert>
       </div>
     </Router>
   );
