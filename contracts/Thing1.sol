@@ -98,6 +98,9 @@ contract Thing is
         ReentrancyGuard.initialize();
     }
 
+
+    // BIIIIGGG TODO fallback function ???
+
     // FEATURE 1 : killable contract
     /*
   function kill() public onlyOwner {
@@ -356,6 +359,7 @@ contract Thing is
         return _tokensOfOwner(msg.sender);
     }
 
+    // TODO add tokenURI???
     /**
      * @dev convinence function that returns all useful information for a token
      * @param tokenId uint256 Id of the token to be queried
