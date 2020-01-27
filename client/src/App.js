@@ -6,6 +6,7 @@ import AppMenu from "@bit/lil.baseth.app-menu";
 import Messages from "@bit/lil.baseth.messages";
 import Footers from "@bit/lil.baseth.footers";
 import Web3Info from "@bit/lil.baseth.web3-info";
+import IpfsUpload from "@bit/lil.baseth.ipfs-upload";
 //import ContractInfo from "@bit/lil.baseth.contract-info";
 
 
@@ -71,7 +72,8 @@ function App() {
     "Deposit Management": "/deposit",
     "IPFS Tests": "/ipfstests",
     "ENS Info": "/ensinfo",
-    "uPort": "/uport"
+    "uPort": "/uport",
+    "IPFS Utils (upload)": "/ipfsutils"
     //"Metamask Info": "/metamaskinfo",
     //"Contract Info": "/contractinfo",
     //Blocks: "/blocks",
@@ -129,9 +131,11 @@ function App() {
             <Deposit jsonInterface={MyContract} />
           </Route>
 
-          <Route path="/ipfstests">
+
+          {/*TODO remove? <Route path="/ipfstests">
             <IPFSTests jsonInterface={MyContract} />
-          </Route>
+</Route>*/}
+
 
           <Route path="/ensinfo">
             <EnsInfo />
@@ -140,6 +144,9 @@ function App() {
           <Route path="/uport">
             <UportInfo />
           </Route>
+
+          <Route path="/ipfsutils" component={IpfsUpload} />
+
 
           {/*<Route path="/things/borrowed" component={MyThings} />
           <Route path="/things/add" component={Thing} />
@@ -151,7 +158,7 @@ function App() {
           <Route path="*" component={NotFound} />*/}
         </Switch>
         <Footers message={footerMessage} />
-        <Alert>Current account: {w3c.accounts[0]}</Alert>
+        <Alert>Current account: <code>{w3c.accounts[0]}</code></Alert>
       </div>
     </Router>
   );
