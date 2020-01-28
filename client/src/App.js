@@ -15,6 +15,7 @@ import IpfsUpload from "@bit/lil.baseth.ipfs-upload";
 //import  from '@bit/lil.baseth.';
 //import  from '@bit/lil.baseth.';
 
+import ThingsList from "./components/ThingsList/index.js";
 import ThingsOwned from "./components/ThingsOwned/index.js";
 import ThingInfo from "./components/ThingInfo/index.js";
 import Deposit from "./components/Deposit/index.js";
@@ -66,6 +67,7 @@ function App() {
 */
 
   const menu = {
+    "All the things": "/things/all",
     "Things I own": "/things/owned",
     "Things I have borrowed": "/things/beared",
     "Deposit Management": "/deposit",
@@ -115,6 +117,10 @@ function App() {
   </Route>]*/}
 
           {/* always keep it before  */}
+          <Route exact path="/things/all">
+            <ThingsList jsonInterface={MyContract} />
+          </Route>
+
           <Route exact path="/things/owned">
             <ThingsOwned jsonInterface={MyContract} />
           </Route>
