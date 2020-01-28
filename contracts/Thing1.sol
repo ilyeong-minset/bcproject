@@ -36,13 +36,16 @@ contract Thing is
     using Address for address payable;
 
     // FEATURE 2 : token metadata (on-chain)
-    struct Metadata {
-        uint256 deposit;
+    //struct Metadata {
+    //    uint256 deposit;
         // FEATURE 5 : locking of token borrowing
-        bool lock;
-    }
+    //    bool lock;
+    //}
 
-    mapping(uint256 => Metadata) private metadatas;
+    //mapping(uint256 => Metadata) private metadatas;
+    // Initial on-chain metadata, can be extended but you have to put it at the end for upgradbility
+    mapping(uint256 => uint256) private deposits;
+    mapping(uint256 => bool) private locks;
 
     // FEATURE 3 : tokenId auto-increment
     Counters.Counter private counterTokenIds;
@@ -124,9 +127,11 @@ contract Thing is
         uint256 newTokenId = counterTokenIds.current();
 
         /// @dev on-chain metadata, can be extended (only add at the end)
-        Metadata memory metadata = Metadata({deposit: deposit, lock: false});
+        //Metadata memory metadata = Metadata({deposit: deposit, lock: false});
+        //metadatas[newTokenId] = metadata;
 
-        metadatas[newTokenId] = metadata;
+        // we could improve that by not setting anything if the deposit is 0
+        deposits[newTokenId] = deposit;
 
         super.mintWithTokenURI(msg.sender, newTokenId, metadataIpfsHash);
 
@@ -218,7 +223,8 @@ contract Thing is
         address owner = ownerOf(tokenId);
 
         // FEATURE 6 : deposit
-        uint256 requiredDeposit = metadatas[tokenId].deposit;
+        //uint256 requiredDeposit = metadatas[tokenId].deposit;
+        uint256 requiredDeposit = deposits[tokenId];
 
         if (requiredDeposit > 0) {
             //check user current balance
@@ -380,13 +386,15 @@ contract Thing is
             bool lock
         )
     {
-        Metadata memory metadata = metadatas[tokenId];
+        //Metadata memory metadata = metadatas[tokenId];
 
         id = tokenId;
-        deposit = metadata.deposit;
+        //deposit = metadata.deposit;
+        deposit = deposits[tokenId];
         owner = ownerOf(tokenId);
         bearer = bearerOf(tokenId);
-        lock = metadata.lock;
+        //lock = metadata.lock;
+        lock = locks[tokenId];
     }
 
 }

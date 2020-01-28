@@ -55,7 +55,7 @@ function ThingInfo({ jsonInterface }) {
       setTokenUri(await contractInstance.methods.tokenURI(parseInt(tokenId)).call());
     };
 
-    if (w3c && w3c.accounts && w3c.accounts[0]) {
+    if (w3c && w3c.accounts && w3c.accounts[0] && contractInstance) {
       fetchOnMD();
       fetchTokenUri();
     }

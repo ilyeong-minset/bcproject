@@ -1,0 +1,211 @@
+Gas Price
+==================
+20000000000
+
+Gas Limit
+==================
+8000000
+
+Listening on 127.0.0.1:8545
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+net_version
+eth_accounts
+net_version
+net_version
+net_version
+eth_accounts
+net_version
+web3_clientVersion
+eth_accounts
+eth_sendTransaction
+
+  Transaction: 0xd629663e01829691e28b2da09cd13cbba0e112bb594f6635a99d21a3cef03d5c
+  Contract created: 0xe78a0f7e598cc8b0bb87894b0f60dd2a88d6a8ab
+  Gas usage: 1569991
+  Block Number: 1
+  Block Time: Tue Jan 28 2020 17:48:08 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+net_version
+eth_getCode
+eth_call
+eth_sendTransaction
+
+  Transaction: 0xeb3ca401178e3ed80cb76db15cd762fbb7e0874abb50662c930692c44c3a8f04
+  Contract created: 0x5b1869d9a4c187f2eaa108f3062412ecf0526b24
+  Gas usage: 948346
+  Block Number: 2
+  Block Time: Tue Jan 28 2020 17:48:08 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+eth_getCode
+eth_sendTransaction
+net_version
+
+  Transaction: 0xb8170b9c24d26f86091ee44af37b5c336186d4e0bb3aec6add4b83f2192b2e48
+  Gas usage: 134605
+  Block Number: 3
+  Block Time: Tue Jan 28 2020 17:48:09 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+eth_sendTransaction
+eth_sendTransaction
+eth_sendTransaction
+eth_sendTransaction
+
+  Transaction: 0xf31ca557ebbbed469ec3cdff72e0f103fa170ead31df7798bcbb65f1707967d7
+  Contract created: 0x254dffcd3277c0b1660f6d42efbb754edababc2b
+  Gas usage: 3487538
+  Block Number: 4
+  Block Time: Tue Jan 28 2020 17:48:09 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+
+  Transaction: 0xff6d0c7c988b59262fb0faf38e9190b097a313dc6b8384cdf56ca158104a8979
+  Contract created: 0xc89ce4735882c9f0f0fe26686c53074e09b0d550
+  Gas usage: 4666569
+  Block Number: 5
+  Block Time: Tue Jan 28 2020 17:48:09 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+
+  Transaction: 0x06b56081b128cdd133067f0cdb093cfeabd23dbd8ec156699576264979ca1293
+  Contract created: 0xd833215cbcc3f914bd1c9ece3ee7bf8b14f841bb
+  Gas usage: 2053788
+  Block Number: 6
+  Block Time: Tue Jan 28 2020 17:48:09 GMT+0100 (Central European Standard Time)
+
+net_version
+eth_getTransactionReceipt
+
+  Transaction: 0x3a3e8a14822f786044ea56f921ecce46193af6b67c129d91f4a705fc0534473f
+  Contract created: 0x9561c133dd8580860b6b7e504bc5aa500f0f06a7
+  Gas usage: 1243424
+  Block Number: 7
+  Block Time: Tue Jan 28 2020 17:48:10 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+eth_getCode
+eth_getCode
+eth_getCode
+eth_getCode
+eth_sendTransaction
+eth_sendTransaction
+eth_sendTransaction
+eth_sendTransaction
+
+  Transaction: 0x76aae8a9e29eaf882bd1f72a543c49602fc69857ef2687ef9962274572c52c3f
+  Gas usage: 48992
+  Block Number: 8
+  Block Time: Tue Jan 28 2020 17:48:10 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+
+  Transaction: 0x9ae1c0903cd0c2e14ce3bb9de90d2f804e6f4810b401bebb7585e47157edc911
+  Gas usage: 49056
+  Block Number: 9
+  Block Time: Tue Jan 28 2020 17:48:10 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+
+  Transaction: 0x3416ff0ac097094e7807e3981c08f5913183d4252e81f0e7f63dc809bafbb26c
+  Gas usage: 48800
+  Block Number: 10
+  Block Time: Tue Jan 28 2020 17:48:10 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+
+  Transaction: 0x49100702ae5e171846af14259527d860b01763846e868dda43e2dee274654e3a
+  Gas usage: 48992
+  Block Number: 11
+  Block Time: Tue Jan 28 2020 17:48:10 GMT+0100 (Central European Standard Time)
+
+net_version
+eth_getTransactionReceipt
+eth_sendTransaction
+
+  Transaction: 0x520fff5d264883e5e31409b5275a4be57d9de58b12292fa18da30b22011b0553
+  Contract created: 0x67b5656d60a809915323bf2c40a8bef15a152e3e
+  Gas usage: 4 229 707
+  Block Number: 12
+  Block Time: Tue Jan 28 2020 17:48:11 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+eth_getCode
+net_version
+net_version
+net_version
+net_version
+eth_sendTransaction
+
+  Transaction: 0xdcd98504926fa1b552b15c4a19f69a855f4ab0ca5f4da6552102dec27c267b18
+  Contract created: 0x2612af3a521c2df9eaf28422ca335b04adf3ac66
+  Gas usage: 841907
+  Block Number: 13
+  Block Time: Tue Jan 28 2020 17:48:13 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+net_version
+eth_getCode
+eth_sendTransaction
+
+  Transaction: 0x8f18ff83b603686d9156a51f0d7f3d9232fb99e40dcd462a36556dfba26794b4
+  Contract created: 0xa57b8a5584442b467b4689f1144d269d096a3daf
+  Gas usage: 995364
+  Block Number: 14
+  Block Time: Tue Jan 28 2020 17:48:14 GMT+0100 (Central European Standard Time)
+
+eth_getTransactionReceipt
+eth_getCode
+
