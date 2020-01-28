@@ -148,6 +148,21 @@ contract("Thing", async accounts => {
       'Pausable: paused',
     );
 
+    await expectRevert(
+      instance.mint("QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo",120, {from: accounts[0]}), 
+      'Pausable: paused',
+    );
+
+    await expectRevert(
+      instance.fundDeposit({from: accounts[1], value: 1}), 
+      'Pausable: paused',
+    );
+
+    await expectRevert(
+      instance.withdrawDeposit({from: accounts[1]}), 
+      'Pausable: paused',
+    );
+    
   });
 
   it("should be able to be resumed", async () => {
