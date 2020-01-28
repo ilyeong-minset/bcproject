@@ -1,3 +1,5 @@
+const { BN, expectRevert } = require('@openzeppelin/test-helpers');
+
 const Thing = artifacts.require("Thing");
 
 contract("Thing", async accounts => {
@@ -26,7 +28,7 @@ contract("Thing", async accounts => {
 //instance.isMinter              instance.isOwner
 //instance.isPauser
 
-  it("should mint token correctly & metadata return the correct result", async () => {
+  it("should mint token correctly & owner correcly assigbed & metadata return the correct result", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
     
@@ -57,7 +59,7 @@ contract("Thing", async accounts => {
     assert.equal(balances1.requiredBalance.valueOf().toString(), "0"); 
   });
 
-  it("should be able to borrow an object & return the correct required balance", async () => {
+  it("should be able to borrow an object & return the correct balances", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
     let borrow1 = await instance.borrow(1, {from: accounts[1]});
@@ -69,8 +71,62 @@ contract("Thing", async accounts => {
     assert.equal(tokensBearer1.valueOf().toString(), "1"); 
 
     let balances1 = await instance.getDepositBalances({from: accounts[1]});
+    assert.equal(balances1.balance.valueOf().toString(), "123"); 
     assert.equal(balances1.requiredBalance.valueOf().toString(), "120"); 
   });
+
+  it("should revert if a user without deposit balance try to borrow the object", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    await expectRevert(
+      instance.borrow(1, {from: accounts[2]}), 
+      'Thing: deposit is not enough to borrow this object',
+    );
+  });
+
+  it("should allow the user to withdraw its deposit up to the required amount (according to the objects he borrowed)", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    let withdraw1 = await instance.withdrawDeposit({from: accounts[1]});
+
+    let balances2 = await instance.getDepositBalances({from: accounts[1]});
+    assert.equal(balances2.balance.valueOf().toString(), "120"); 
+    assert.equal(balances2.requiredBalance.valueOf().toString(), "120"); 
+  });
+
+  it("should allow the owner of an object to get it back & regardless of its balances & without chaning them", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+    let borrow2 = await instance.borrow(1, {from: accounts[0]});
+
+    let bearer2 = await instance.bearerOf(1);
+    assert.equal(bearer2.valueOf(), accounts[0]); 
+
+    let balances3 = await instance.getDepositBalances({from: accounts[0]});
+    assert.equal(balances3.balance.valueOf().toString(), "0"); 
+    assert.equal(balances3.requiredBalance.valueOf().toString(), "0"); 
+  });
+
+  //TODO test user balance
+  it("should allow the user to withdraw its full deposit when he doesn't borrow any object", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    let balances3 = await instance.getDepositBalances({from: accounts[1]});
+    assert.equal(balances3.balance.valueOf().toString(), "120"); 
+    assert.equal(balances3.requiredBalance.valueOf().toString(), "0"); 
+
+    let withdraw2 = await instance.withdrawDeposit({from: accounts[1]});
+
+    let balances4 = await instance.getDepositBalances({from: accounts[1]});
+    assert.equal(balances4.balance.valueOf().toString(), "0"); 
+    assert.equal(balances4.requiredBalance.valueOf().toString(), "0"); 
+  });
+
+
+
   
   /*
   it("should call a function that depends on a linked library", async () => {
