@@ -2,12 +2,13 @@ import React /*useState, useEffect*/ from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 
-import Topbar from "@bit/lil.baseth.topbar";
-import AppMenu from "@bit/lil.baseth.app-menu";
-import Messages from "@bit/lil.baseth.messages";
-import Footers from "@bit/lil.baseth.footers";
-import Web3Info from "@bit/lil.baseth.web3-info";
-import IpfsUpload from "@bit/lil.baseth.ipfs-upload";
+import Topbar from "./components/Topbar/index.js";
+import AppMenu from "./components/AppMenu/index.js";
+import Messages from "./components/Messages/index.js";
+//import Web3Info from "./components/Web3Info/index.js";
+//import MetamaskInfo from "./components/MetamaskInfo/index.js";
+import IpfsUpload from "./components/IpfsUpload/index.js";
+import Footers from "./components/Footers/index.js";
 //import ContractInfo from "@bit/lil.baseth.contract-info";
 
 //import ContractInfo from "./components/ContractInfo/index.js";
@@ -96,7 +97,7 @@ function App() {
           <Route exact path="/">
             <AppMenu menu={menu} />
           </Route>
-          <Route path="/web3info" component={Web3Info} />
+          {/*<Route path="/web3info" component={Web3Info} />*/}
 
           {/*<Route path="/contractinfo">
             <ContractInfo

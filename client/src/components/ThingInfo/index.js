@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useWeb3Injected } from '@openzeppelin/network/lib/react';
 import { ListGroup, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import EthAddress from "@bit/lil.baseth.eth-address";
+import EthAddress from "../EthAddress/index";
 import ipfsClient from "ipfs-http-client";
 
 
