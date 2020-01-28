@@ -12,7 +12,7 @@ contract("Thing", async accounts => {
   
   it("should initialize & so have the correct name", async () => {
     let instance = await Thing.deployed();
-    let init = await instance.initialize({from: accounts[0]}); //needed because of the upgradable pattern
+    let init = await instance.initialize2({from: accounts[0]}); //needed because of the upgradable pattern
     let name = await instance.name({from: accounts[0]});
     assert.equal(name.valueOf(), "Thing");
   });
@@ -179,8 +179,20 @@ contract("Thing", async accounts => {
 
   });
 
-  // TODO test locking when feature is enabled
+  it("should prevent any borrowing when a token is locked", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
 
+    let lock1 = await instance.lockToken(1, {from: accounts[0]});
+
+    await expectRevert(
+      instance.borrow(1, {from: accounts[0]}), 
+      'Thing: token is locked',
+    );
+
+    let unlock1 = await instance.unlockToken(1, {from: accounts[0]});
+
+  });
 
 
   it("should allow the owner of an object to get it back & regardless of its balances & without chaning them", async () => {

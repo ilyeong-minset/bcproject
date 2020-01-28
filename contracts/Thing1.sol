@@ -89,7 +89,7 @@ contract Thing is
     /**
    * @dev replace the contructor in the context of an upgradable contract, must always be called manually when creating a contract
    */
-    function initialize() public initializer {
+    function initialize2() public initializer {
         ERC721.initialize();
         ERC721Enumerable.initialize();
         ERC721Metadata.initialize("Thing", "TG1");
@@ -214,6 +214,7 @@ contract Thing is
     function _borrowFrom(address from, address to, uint256 tokenId)
         internal
         whenNotPaused
+        onlyUnlocked(tokenId)
     {
         require(_exists(tokenId), "Thing: token dont exist");
         require(to != address(0), "Thing: transfer to the zero address");
@@ -276,22 +277,28 @@ contract Thing is
     }
 
     // FEATURE 5 : locking of token borrowing
-    /*
     function lockToken(uint256 tokenId) public {
-      require(_exists(tokenId), "Thing: token dont exist");
-      require(ownerOf(tokenId) == msg.sender, "Thing: only the owner of a token can lock it");
+      //require(_exists(tokenId), "Thing: token dont exist");
+      require(ownerOf(tokenId) == msg.sender, "Thing: you are not the owner");
 
-      locked[tokenId] = true;
-    }*/
+      locks[tokenId] = true;
+    }
+
+    function unlockToken(uint256 tokenId) public {
+      //require(_exists(tokenId), "Thing: token dont exist");
+      require(ownerOf(tokenId) == msg.sender, "Thing: you are not the owner");
+
+      locks[tokenId] = false;
+    }
 
     /*function isLocked(uint256 tokenId) public view returns (bool) {
         return locked[tokenId];
     }*/
 
-    /*modifier onlyUnlocked(uint256 tokenId) {
-        require(isLocked(tokenId), "Thing: the token is locked");
+    modifier onlyUnlocked(uint256 tokenId) {
+        require(!locks[tokenId], "Thing: token is locked");
         _;
-    }*/
+    }
 
     // FEATURE 6 : deposit
     /**
@@ -388,8 +395,6 @@ contract Thing is
         )
     {
         //Metadata memory metadata = metadatas[tokenId];
-
-        //string memory tmp = this.tokenURI(tokenId);
 
         id = tokenId;
         tokenURI = this.tokenURI(tokenId);
