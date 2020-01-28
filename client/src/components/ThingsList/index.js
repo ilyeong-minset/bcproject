@@ -7,8 +7,10 @@ import ipfsClient from "ipfs-http-client";
 //function tokenByIndex(uint256 index)
 //function tokenURI(uint256 tokenId)
 
+//getTokensOfOwner()
+//getTokensOfBearer()
 
-function ThingsList({ jsonInterface }) {
+function ThingsList({ jsonInterface, query }) {
 
   const [contractInstance, setContractInstance] = useState(undefined);
   const [contractAddress, setContractAddress] = useState(undefined);
@@ -60,6 +62,7 @@ function ThingsList({ jsonInterface }) {
 
   useEffect(() => {
     if (totalSupply) {
+
       const allTokens = Array(totalSupply).fill().map((_, i) => i);
       //console.log(allTokens);
 
@@ -72,24 +75,46 @@ function ThingsList({ jsonInterface }) {
         return functionWithPromise(item);
       }
       
-      const fetchTokenIds = async () => {
+      const fetchAllTokenIds = async () => {
         return (await Promise.all(allTokens.map(item => anAsyncFunction(item)))).map(item => parseInt(item));
       }
-      
+      /*
+      const fetchOwnerTokenIds = async () => {
+        const ownerTokenIds = await contractInstance.methods.getTokensOfOwner().call({ from: w3c.accounts[0] });
+        return ownerTokenIds;//.map(item => parseInt(item));
+      };
+
+      const fetchBorrowerTokenIds = async () => {
+        const borrowerTokenIds = await contractInstance.methods.getTokensOfBorrower().call({ from: w3c.accounts[0] });
+        return borrowerTokenIds;//.map(item => parseInt(item));
+      };*/
+
       if (w3c && w3c.accounts && w3c.accounts[0] && contractInstance) {
-        fetchTokenIds().then(tokenIds => {
-          setTokenIds(tokenIds);
-        })
+        if(query === "owned") {
+          //setTokenIds(fetchOwnerTokenIds());
+          //console.log(fetchOwnerTokenIds().map(item => parseInt(item)));
+          contractInstance.methods.getTokensOfOwner().call({ from: w3c.accounts[0] }).then(tokenIds => {
+            setTokenIds(tokenIds);
+          })
+        } else if(query === "borrowed") {
+          contractInstance.methods.getTokensOfBearer().call({ from: w3c.accounts[0] }).then(tokenIds => {
+            setTokenIds(tokenIds);
+          })
+        } else {
+          fetchAllTokenIds().then(tokenIds => {
+            setTokenIds(tokenIds);
+          })
+        }
       }
+      
     }
   }, [totalSupply]);
 
-  if (totalSupply && tokenIds) {
+  if (tokenIds && (tokenIds.length > 0)) {
     return (
       <ListGroup>
         <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
         {tokenIds.map(x => <ListGroup.Item action href={"/things/" + x} key={x}><ThingItem tokenId={x} contractInstance={contractInstance} ipfs={ipfs} /></ListGroup.Item>)}
-        <ListGroup.Item>Total supply: {totalSupply}</ListGroup.Item>
       </ListGroup>
     );
   } else {
@@ -120,7 +145,8 @@ function ThingItem({ tokenId, contractInstance, ipfs }) {
       const result = await ipfs.get(tokenUri);
       if (result[0] && result[0].content) {
         //TODO can we go directly from result to JSON (for perf)
-        const json = JSON.parse(result[0].content.toString('utf8'));
+        //const json = JSON.parse(result[0].content.toString('utf8'));
+        const json = JSON.parse(result[0].content);
         setName(json.name);
       } else {
         console.error("Something wrong with what was retreived on ipfs", result);
@@ -130,7 +156,7 @@ function ThingItem({ tokenId, contractInstance, ipfs }) {
     if (tokenUri) fetchData();
   }, [tokenUri]); 
 
-  return <div>Object {tokenId}: {(name) ? name : 'name loading...'}</div>
+  return <>Object {tokenId}: {(name) ? name : 'name loading...'}</>
 
 }
 
