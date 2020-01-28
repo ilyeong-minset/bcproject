@@ -21,14 +21,14 @@ function EnsInfo({ jsonInterface }) {
     };*/
     resolveEns()
     //resolveReverseEns()
-  }, []); 
+  }, [w3c.networkId]); 
 
   if (resultAddress) {
     return (
       <>
         <Alert key="network3-alert" variant="danger">Ignore previous global message, for this one to work you have to set Metamask on Mainnet (where ENS is)</Alert>
         <ListGroup>
-    <ListGroup.Item><b>{name}</b> resolves to <code>{resultAddress}</code> on ENS (queried with web3.js)</ListGroup.Item>
+          <ListGroup.Item><b>{name}</b> resolves to <code>{resultAddress}</code> on ENS (queried with web3.js)</ListGroup.Item>
         </ListGroup>
       </>
     );
