@@ -60,7 +60,6 @@ function ThingsList({ jsonInterface }) {
 
   useEffect(() => {
     if (totalSupply) {
-      //console.log(totalSupply);
       const allTokens = Array(totalSupply).fill().map((_, i) => i);
       console.log(allTokens);
 
@@ -74,7 +73,7 @@ function ThingsList({ jsonInterface }) {
       }
       
       const fetchTokenIds = async () => {
-        return Promise.all(allTokens.map(item => anAsyncFunction(item)))
+        return (await Promise.all(allTokens.map(item => anAsyncFunction(item)))).map(item => parseInt(item));
       }
       
       if (w3c && w3c.accounts && w3c.accounts[0] && contractInstance) {
@@ -90,7 +89,7 @@ function ThingsList({ jsonInterface }) {
       <ListGroup>
         <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
         <ListGroup.Item>Total supply: {totalSupply}</ListGroup.Item>
-        {tokenIds.map(x => <ListGroup.Item action href={"/things/" + x} key={x}>Object {x}</ListGroup.Item>)}
+        {tokenIds.map(x => <ListGroup.Item action href={"/things/" + x} key={x}><ThingItem tokenId={x} contractInstance={contractInstance} /></ListGroup.Item>)}
       </ListGroup>
     );
   } else {
@@ -104,5 +103,21 @@ function ThingsList({ jsonInterface }) {
   }
 
 }
+
+function ThingItem({ tokenId, contractInstance }) {
+
+  const [tokenUri, setTokenUri] = useState(undefined);
+
+  useEffect(() => {
+    if (contractInstance) {
+      contractInstance.methods.tokenURI(parseInt(tokenId)).call().then(x => setTokenUri(x));
+    }
+  });
+
+  return <div>Object {tokenId} ({(tokenUri) ? tokenUri : 'loading...'})</div>
+
+}
+
+
 
 export default ThingsList;

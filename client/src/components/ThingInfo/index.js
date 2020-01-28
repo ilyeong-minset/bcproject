@@ -50,6 +50,7 @@ function ThingInfo({ jsonInterface }) {
       setOnMD(await contractInstance.methods.getTokenMetadata(parseInt(tokenId)).call());
     };
 
+    //TODO as we now put it in getTokenMetadata this call is not needed anymore
     const fetchTokenUri = async () => {
       // FIXME handle error if token does not exist
       setTokenUri(await contractInstance.methods.tokenURI(parseInt(tokenId)).call());
