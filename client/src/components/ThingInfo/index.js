@@ -93,10 +93,14 @@ function ThingInfo({ jsonInterface }) {
     //console.log("account", account);
     contractInstance.methods.borrow(parseInt(tokenId)).send({ from: w3c.accounts[0] });
 
-    // trigger an effect 12 sec later to update values
+    // trigger an effect 5 sec later to update values
     setTimeout(() => {
       setChange(change + 1);
-    }, 12000);
+    }, 5000);
+    // trigger an effect 14 sec later to update values
+    setTimeout(() => {
+      setChange(change + 1);
+    }, 14000);
   }, [contractInstance]);
 
   if (onMD && offMD) {

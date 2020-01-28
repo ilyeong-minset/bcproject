@@ -41,7 +41,7 @@ function Deposit({ jsonInterface }) {
       //console.log("tokens", tokens);
     };
 
-    if (w3c && w3c.accounts && w3c.accounts[0]) {
+    if (w3c && w3c.accounts && w3c.accounts[0] && contractInstance) {
       fetchDeposits();
     }
 
@@ -58,10 +58,16 @@ function Deposit({ jsonInterface }) {
   const fundDeposit = async (event) => {
     event.preventDefault();
     const tx = await contractInstance.methods.fundDeposit().send({ from: w3c.accounts[0], gasLimit: 7000000, value: formFundValue });
-    // trigger an effect 12 sec later to update values
+
+    // trigger an effect 5 sec later to update values
     setTimeout(() => {
       setChange(change + 1);
-    }, 12000);
+    }, 5000);
+    // trigger an effect 14 sec later to update values
+    setTimeout(() => {
+      setChange(change + 1);
+    }, 14000);
+
   };
 
   /*  const fundDeposit = async () => {
