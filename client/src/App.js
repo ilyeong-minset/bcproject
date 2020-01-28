@@ -1,4 +1,4 @@
-import React, { /*useState, useEffect*/ } from "react";
+import React /*useState, useEffect*/ from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 
@@ -10,15 +10,14 @@ import Web3Info from "@bit/lil.baseth.web3-info";
 import IpfsUpload from "@bit/lil.baseth.ipfs-upload";
 //import ContractInfo from "@bit/lil.baseth.contract-info";
 
-
 //import ContractInfo from "./components/ContractInfo/index.js";
 //import Comments from "./components/Comments/index.js";
 //import  from '@bit/lil.baseth.';
 //import  from '@bit/lil.baseth.';
 
-import ThingsOwned from './components/ThingsOwned/index.js';
-import ThingInfo from './components/ThingInfo/index.js';
-import Deposit from './components/Deposit/index.js';
+import ThingsOwned from "./components/ThingsOwned/index.js";
+import ThingInfo from "./components/ThingInfo/index.js";
+import Deposit from "./components/Deposit/index.js";
 //import IPFSTests from './components/IPFSTests/index.js';
 import EnsInfo from "./components/EnsInfo/index.js";
 import UportInfo from "./components/UportInfo/index.js";
@@ -34,7 +33,7 @@ import UportInfo from "./components/UportInfo/index.js";
 import { useWeb3Injected } from "@openzeppelin/network/lib/react";
 //import logo from './eth-logo.svg';
 
-import "./bootstrap.dark.min.css";
+import "./bootstrap.simplex.min.css";
 
 import MyContract from "./contracts-build/Thing.json";
 import { Alert } from "react-bootstrap";
@@ -73,7 +72,7 @@ function App() {
     "Deposit Management": "/deposit",
     //"IPFS Tests": "/ipfstests",
     "ENS Info": "/ensinfo",
-    "uPort": "/uport",
+    uPort: "/uport",
     "IPFS Utils (upload)": "/ipfsutils"
     //"Metamask Info": "/metamaskinfo",
     //"Contract Info": "/contractinfo",
@@ -85,11 +84,7 @@ function App() {
     //Comments: "/comments"
   };
 
-  const footerMessage = (
-    <>
-      Made with Ethereum
-    </>
-  );
+  const footerMessage = <>Made with Ethereum</>;
 
   return (
     <Router>
@@ -132,11 +127,9 @@ function App() {
             <Deposit jsonInterface={MyContract} />
           </Route>
 
-
           {/*TODO remove? <Route path="/ipfstests">
             <IPFSTests jsonInterface={MyContract} />
 </Route>*/}
-
 
           <Route path="/ensinfo">
             <EnsInfo />
@@ -150,8 +143,15 @@ function App() {
 
           <Route path="/fund">
             <ListGroup>
-              <ListGroup.Item>On a local dev net (ganache), you have a 100 eth on the first addresses</ListGroup.Item>
-              <ListGroup.Item>On public testnets, you have to fund you account on faucets (such as <a href="https://faucet.rinkeby.io/">the Rinkeby faucet</a>)</ListGroup.Item>
+              <ListGroup.Item>
+                On a local dev net (ganache), you have a 100 eth on the first
+                addresses
+              </ListGroup.Item>
+              <ListGroup.Item>
+                On public testnets, you have to fund you account on faucets
+                (such as{" "}
+                <a href="https://faucet.rinkeby.io/">the Rinkeby faucet</a>)
+              </ListGroup.Item>
             </ListGroup>
           </Route>
 
@@ -165,10 +165,13 @@ function App() {
           <Route path="*" component={NotFound} />*/}
         </Switch>
         <Footers message={footerMessage} />
-        <Alert>Current account: <code>{w3c.accounts[0]}</code></Alert>
+        <Alert>
+          Current account: <code>{w3c.accounts[0]}</code>
+        </Alert>
       </div>
     </Router>
   );
 }
 
 export default App;
+

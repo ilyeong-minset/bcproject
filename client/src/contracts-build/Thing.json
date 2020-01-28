@@ -17815,12 +17815,12 @@
     "12345": {
       "links": {},
       "events": {},
-      "address": "0xa41795579e6779aE007200DE58DA175d78eE0bA6",
-      "updated_at": 1580209161531
+      "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+      "updated_at": 1580229165408
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-28T10:58:39.598Z",
+  "updatedAt": "2020-01-28T16:32:09.179Z",
   "devdoc": {
     "author": "Fred",
     "details": "Upgradable contract built on OpenZeppelin ERC721 implementation with extensions",
