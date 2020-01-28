@@ -380,6 +380,7 @@ contract Thing is
         view
         returns (
             uint256 id,
+            string memory tokenURI, //just this cost 115 000 gas at deployement :-(
             uint256 deposit,
             address owner,
             address bearer,
@@ -388,7 +389,10 @@ contract Thing is
     {
         //Metadata memory metadata = metadatas[tokenId];
 
+        //string memory tmp = this.tokenURI(tokenId);
+
         id = tokenId;
+        tokenURI = this.tokenURI(tokenId);
         //deposit = metadata.deposit;
         deposit = deposits[tokenId];
         owner = ownerOf(tokenId);
