@@ -1,7 +1,7 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0xCeeFD27e0542aFA926B87d23936c79c276A48277",
+      "address": "0x67B5656d60a809915323Bf2C40A8bEF15A152e3e",
       "constructorCode": "60806040526140ff806100136000396000f3fe",
       "bodyBytecodeHash": "6a66dd6c5b1bacad1aef9afc67e9bc12f29393487e02474cfa612c6a473ffe0c",
       "localBytecodeHash": "7d92947d26faa0fc29eaada20f525ac8d410b5f9c2d5b1ea4991c0c17f05fc6c",
@@ -431,10 +431,10 @@
   "proxies": {
     "Thing/Thing": [
       {
-        "address": "0x988B6CFBf3332FF98FFBdED665b1F53a61f92612",
+        "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
         "version": "0.1.0",
-        "implementation": "0xCeeFD27e0542aFA926B87d23936c79c276A48277",
-        "admin": "0x47a2Db5D68751EeAdFBC44851E84AcDB4F7299Cc",
+        "implementation": "0x67B5656d60a809915323Bf2C40A8bEF15A152e3e",
+        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
         "kind": "Upgradeable"
       }
     ]
@@ -442,13 +442,13 @@
   "manifestVersion": "2.2",
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": {
-      "package": "0x1b88Bdb8269A1aB1372459F5a4eC3663D6f5cCc4",
+      "package": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
       "version": "2.4.0",
       "customDeploy": true
     }
   },
   "version": "0.1.0",
   "proxyAdmin": {
-    "address": "0x47a2Db5D68751EeAdFBC44851E84AcDB4F7299Cc"
+    "address": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66"
   }
 }

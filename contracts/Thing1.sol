@@ -277,6 +277,10 @@ contract Thing is
     }
 
     // FEATURE 5 : locking of token borrowing
+    /**
+     * @dev allow the owner of a token to lock it, so it can't be borrowed anymore
+     * @param tokenId uint256 ID of the token to be transferred
+     */
     function lockToken(uint256 tokenId) public {
       //require(_exists(tokenId), "Thing: token dont exist");
       require(ownerOf(tokenId) == msg.sender, "Thing: you are not the owner");
@@ -284,6 +288,10 @@ contract Thing is
       locks[tokenId] = true;
     }
 
+    /**
+     * @dev allow the owner of a token to unlock it, so it can be borrowed again
+     * @param tokenId uint256 ID of the token to be transferred
+     */
     function unlockToken(uint256 tokenId) public {
       //require(_exists(tokenId), "Thing: token dont exist");
       require(ownerOf(tokenId) == msg.sender, "Thing: you are not the owner");
@@ -291,10 +299,10 @@ contract Thing is
       locks[tokenId] = false;
     }
 
-    /*function isLocked(uint256 tokenId) public view returns (bool) {
-        return locked[tokenId];
-    }*/
-
+    /**
+     * @dev prevent action on a locked token
+     * @param tokenId uint256 ID of the token to be transferred
+     */
     modifier onlyUnlocked(uint256 tokenId) {
         require(!locks[tokenId], "Thing: token is locked");
         _;
@@ -372,7 +380,6 @@ contract Thing is
         return _tokensOfOwner(msg.sender);
     }
 
-    // TODO add tokenURI???
     /**
      * @dev convinence function that returns all useful information for a token
      * @param tokenId uint256 Id of the token to be queried
