@@ -24,24 +24,53 @@ contract("Thing", async accounts => {
     assert.equal(owner.valueOf(), accounts[0]);
   });
 
-// TODO
-//instance.isMinter              instance.isOwner
-//instance.isPauser
+  it("should have the correct minter", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
 
-  it("should mint token correctly & owner correcly assigbed & metadata return the correct result", async () => {
+    let isMinter1 = await instance.isMinter(accounts[0]);
+    assert.isTrue(isMinter1);
+
+    let isMinter2 = await instance.isMinter(accounts[1]);
+    assert.isFalse(isMinter2);
+  });
+
+  it("should have the correct pauser", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    let isPauser1 = await instance.isMinter(accounts[0]);
+    assert.isTrue(isPauser1);
+
+    let isPauser2 = await instance.isMinter(accounts[1]);
+    assert.isFalse(isPauser2);
+  });
+
+  it("should mint tokens", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
     
     let mint1 = await instance.mint("QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo",120, {from: accounts[0]}); 
-    
+  });
+
+  it("should, once a token is minted have owner, supply correcly assigned & metadata return the correct result", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
     let tokenId1 = await instance.tokenByIndex(0);
     assert.equal(tokenId1.valueOf(), 1);
+
+    let totalSupply1 = await instance.totalSupply();
+    assert.equal(totalSupply1.valueOf(), 1);
+
+    let tokensOwner1 = await instance.getTokensOfOwner({from: accounts[0]});
+    assert.equal(tokensOwner1.valueOf().toString(), "1"); 
 
     let token1uri = await instance.tokenURI(1);
     assert.equal(token1uri.valueOf(), "QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo");
 
     let token1md = await instance.getTokenMetadata(1);
-    
+
     assert.equal(token1md.id.valueOf(), 1);
     assert.equal(token1md.deposit.valueOf().toString(), "120"); //toString because it is a BN
     // Here we implicitly test getTokensOfOwner()
@@ -96,6 +125,49 @@ contract("Thing", async accounts => {
     assert.equal(balances2.requiredBalance.valueOf().toString(), "120"); 
   });
 
+  it("should be able to be paused", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    let pauseStatus1 = await instance.paused();
+    assert.isFalse(pauseStatus1);
+
+    let pause1 = await instance.pause({from: accounts[0]});
+
+    let pauseStatus2 = await instance.paused();
+    assert.isTrue(pauseStatus2);
+
+  });
+
+  it("should protect sensitive functions when paused", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    await expectRevert(
+      instance.borrow(1, {from: accounts[0]}), 
+      'Pausable: paused',
+    );
+
+  });
+
+  it("should be able to be resumed", async () => {
+    let instance = await Thing.deployed();
+    //let init = await instance.initialize();
+
+    let pauseStatus3 = await instance.paused();
+    assert.isTrue(pauseStatus3);
+
+    let unpause1 = await instance.unpause({from: accounts[0]});
+
+    let pauseStatus4 = await instance.paused();
+    assert.isFalse(pauseStatus4);
+
+  });
+
+  // TODO test locking when feature is enabled
+
+
+
   it("should allow the owner of an object to get it back & regardless of its balances & without chaning them", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -109,7 +181,6 @@ contract("Thing", async accounts => {
     assert.equal(balances3.requiredBalance.valueOf().toString(), "0"); 
   });
 
-  //TODO test user balance
   it("should allow the user to withdraw its full deposit when he doesn't borrow any object", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
