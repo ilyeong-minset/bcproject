@@ -66,14 +66,14 @@ function App() {
 */
 
   const menu = {
-    "Web3 Info": "/web3info",
     "Things I own": "/things/owned",
     "Things I have borrowed": "/things/beared",
     "Deposit Management": "/deposit",
     //"IPFS Tests": "/ipfstests",
     "ENS Info": "/ensinfo",
     uPort: "/uport",
-    "IPFS Utils (upload)": "/ipfsutils"
+    "IPFS Utils (upload)": "/ipfsutils",
+    "Web3 Info": "/web3info"
     //"Metamask Info": "/metamaskinfo",
     //"Contract Info": "/contractinfo",
     //Blocks: "/blocks",
