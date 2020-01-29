@@ -9,7 +9,25 @@ contract("Thing", async accounts => {
    * functionalities outside of the context of my contract as they
    * are already very well tested
    */
+
+  /**
+   * Those tests simulate how the app would be used or abused
+   * The contract is deployed
+   * we check all initialization, security settings, roles are ok
+   * we mint a token
+   * we check all the attributes
+   * users try to borrow the token without the right deposit, while paused, locked...
+   * the contract is funded in term of deposit
+   * a token is borrowed, with all the right side effects
+   * the token is taken back by the owner, with all the right side effects
+   * etc.
+   */
   
+  /**
+   * one specificity of upgradable contract is that they need to be 
+   * initialized by a specific function since they don't have contructors
+   * we test that
+   */
   it("should initialize & so have the correct name", async () => {
     let instance = await Thing.deployed();
     let init = await instance.initialize2({from: accounts[0]}); //needed because of the upgradable pattern
@@ -17,6 +35,9 @@ contract("Thing", async accounts => {
     assert.equal(name.valueOf(), "Thing");
   });
 
+  /**
+   * The next tests check all the security, roles initialization feature went well
+   */
   it("should have the correct owner", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -46,6 +67,9 @@ contract("Thing", async accounts => {
     assert.isFalse(isPauser2);
   });
 
+  /**
+   * We start minting tokens 
+   */
   it("should mint tokens", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -53,6 +77,9 @@ contract("Thing", async accounts => {
     let mint1 = await instance.mint("QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo",120, {from: accounts[0]}); 
   });
 
+  /**
+   * We test all the attributes of that token
+   */
   it("should, once a token is minted have owner, supply correcly assigned & metadata return the correct result", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -79,6 +106,9 @@ contract("Thing", async accounts => {
     assert.equal(token1md.lock.valueOf(), false);
   });
 
+  /**
+   * The next tests are about deposit management & borrowing, and their side effects
+   */
   it("should be able to make a deposit & return the correct balances", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -114,6 +144,9 @@ contract("Thing", async accounts => {
     );
   });
 
+  /**
+   * a user shouldn't be able to withdraw the full deposit if he still bear some tokens
+   */
   it("should allow the user to withdraw its deposit up to the required amount (according to the objects he borrowed)", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -125,6 +158,9 @@ contract("Thing", async accounts => {
     assert.equal(balances2.requiredBalance.valueOf().toString(), "120"); 
   });
 
+  /**
+   * In the next tests we test the circuit breaker feature
+   */
   it("should be able to be paused", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -179,6 +215,9 @@ contract("Thing", async accounts => {
 
   });
 
+  /**
+   * Here we test the individual token locking feature
+   */
   it("should prevent any borrowing when a token is locked", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -194,7 +233,9 @@ contract("Thing", async accounts => {
 
   });
 
-
+  /**
+   * The owner of an object can get back its objects regardless of its balance, we test that
+   */
   it("should allow the owner of an object to get it back & regardless of its balances & without chaning them", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -208,6 +249,9 @@ contract("Thing", async accounts => {
     assert.equal(balances3.requiredBalance.valueOf().toString(), "0"); 
   });
 
+  /**
+   * we test the full deposit can be withdrawn
+   */
   it("should allow the user to withdraw its full deposit when he doesn't borrow any object", async () => {
     let instance = await Thing.deployed();
     //let init = await instance.initialize();
@@ -225,50 +269,4 @@ contract("Thing", async accounts => {
 
 
 
-  
-  /*
-  it("should call a function that depends on a linked library", async () => {
-    let meta = await MetaCoin.deployed();
-    let outCoinBalance = await meta.getBalance.call(accounts[0]);
-    let metaCoinBalance = outCoinBalance.toNumber();
-    let outCoinBalanceEth = await meta.getBalanceInEth.call(accounts[0]);
-    let metaCoinEthBalance = outCoinBalanceEth.toNumber();
-    assert.equal(metaCoinEthBalance, 2 * metaCoinBalance);
-  });
-
-  it("should send coin correctly", async () => {
-    // Get initial balances of first and second account.
-    let account_one = accounts[0];
-    let account_two = accounts[1];
-
-    let amount = 10;
-
-    let instance = await MetaCoin.deployed();
-    let meta = instance;
-
-    let balance = await meta.getBalance.call(account_one);
-    let account_one_starting_balance = balance.toNumber();
-
-    balance = await meta.getBalance.call(account_two);
-    let account_two_starting_balance = balance.toNumber();
-    await meta.sendCoin(account_two, amount, { from: account_one });
-
-    balance = await meta.getBalance.call(account_one);
-    let account_one_ending_balance = balance.toNumber();
-
-    balance = await meta.getBalance.call(account_two);
-    let account_two_ending_balance = balance.toNumber();
-
-    assert.equal(
-      account_one_ending_balance,
-      account_one_starting_balance - amount,
-      "Amount wasn't correctly taken from the sender"
-    );
-    assert.equal(
-      account_two_ending_balance,
-      account_two_starting_balance + amount,
-      "Amount wasn't correctly sent to the receiver"
-    );
-  });
-  */
 });

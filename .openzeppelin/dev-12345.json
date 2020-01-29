@@ -1,11 +1,11 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x67B5656d60a809915323Bf2C40A8bEF15A152e3e",
-      "constructorCode": "60806040526140ff806100136000396000f3fe",
-      "bodyBytecodeHash": "6a66dd6c5b1bacad1aef9afc67e9bc12f29393487e02474cfa612c6a473ffe0c",
-      "localBytecodeHash": "7d92947d26faa0fc29eaada20f525ac8d410b5f9c2d5b1ea4991c0c17f05fc6c",
-      "deployedBytecodeHash": "7d92947d26faa0fc29eaada20f525ac8d410b5f9c2d5b1ea4991c0c17f05fc6c",
+      "address": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D",
+      "constructorCode": "60806040526140df806100136000396000f3fe",
+      "bodyBytecodeHash": "6924df2ffa582f479f585bf54d1cf27ab61889886a624f52c8877a7722aceebc",
+      "localBytecodeHash": "39708b50270dd56f405c25e7d712cd8043839f95215822eb2c9c956730fe494a",
+      "deployedBytecodeHash": "39708b50270dd56f405c25e7d712cd8043839f95215822eb2c9c956730fe494a",
       "types": {
         "t_bool": {
           "id": "t_bool",
@@ -431,10 +431,10 @@
   "proxies": {
     "Thing/Thing": [
       {
-        "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
+        "address": "0x5017A545b09ab9a30499DE7F431DF0855bCb7275",
         "version": "0.1.0",
-        "implementation": "0x67B5656d60a809915323Bf2C40A8bEF15A152e3e",
-        "admin": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66",
+        "implementation": "0xaD888d0Ade988EbEe74B8D4F39BF29a8d0fe8A8D",
+        "admin": "0x7C728214be9A0049e6a86f2137ec61030D0AA964",
         "kind": "Upgradeable"
       }
     ]
@@ -442,13 +442,13 @@
   "manifestVersion": "2.2",
   "dependencies": {
     "@openzeppelin/contracts-ethereum-package": {
-      "package": "0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab",
+      "package": "0x630589690929E9cdEFDeF0734717a9eF3Ec7Fcfe",
       "version": "2.4.0",
       "customDeploy": true
     }
   },
   "version": "0.1.0",
   "proxyAdmin": {
-    "address": "0x2612Af3A521c2df9EAF28422Ca335b04AdF3ac66"
+    "address": "0x7C728214be9A0049e6a86f2137ec61030D0AA964"
   }
 }
