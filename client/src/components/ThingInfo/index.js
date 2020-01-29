@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useWeb3Injected } from '@openzeppelin/network/lib/react';
 import { ListGroup, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import EthAddress from "../EthAddress/index";
 import ipfsClient from "ipfs-http-client";
-import { FaBeer } from 'react-icons/fa';
+//import { FaBeer } from 'react-icons/fa';
 
 function ThingInfo({ jsonInterface }) {
 
@@ -15,10 +15,12 @@ function ThingInfo({ jsonInterface }) {
   const [tokenUri, setTokenUri] = useState(undefined);
   const [offMD, setOffMD] = useState(undefined);
   const [account, setAccount] = useState(undefined);
-  const [change, setChange] = useState(0);
   const [userDepositBalances, setUserDepositBalances] = useState(undefined);
   const [missingDeposit, setMissingDeposit] = useState(undefined);
 
+  const [change, setChange] = useState(0);
+  const changeRef = useRef(change);
+  changeRef.current = change;
 
   const w3c = useWeb3Injected();
   const ipfs = ipfsClient({
@@ -109,15 +111,7 @@ function ThingInfo({ jsonInterface }) {
     const tx = await contractInstance.methods.fundDeposit().send({ from: w3c.accounts[0], gasLimit: 500000, value: missingDeposit });
 
     // trigger an effect x,Y,Z sec later to update values
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 5000);
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 10000);
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 20000);
+    setTimeout(() => setChange(change + 1), 20000);
   };
 
 
@@ -127,15 +121,9 @@ function ThingInfo({ jsonInterface }) {
     contractInstance.methods.borrow(parseInt(tokenId)).send({ from: w3c.accounts[0] });
 
     // trigger an effect x,Y,Z sec later to update values
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 8000);
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 10000);
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 20000);
+    setTimeout(() => setChange(change + 1), 20000);
+
+
   }, [contractInstance]);
 
   if (onMD && offMD) {
