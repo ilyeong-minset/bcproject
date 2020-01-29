@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import EthAddress from "../EthAddress/index";
 import ipfsClient from "ipfs-http-client";
 //import { FaBeer } from 'react-icons/fa';
+import ThreeBoxComments from "3box-comments-react";
+import Box from "3box";
 
 function ThingInfo({ jsonInterface }) {
 
@@ -18,9 +20,13 @@ function ThingInfo({ jsonInterface }) {
   const [userDepositBalances, setUserDepositBalances] = useState(undefined);
   const [missingDeposit, setMissingDeposit] = useState(undefined);
 
+  //3box
+  const [comments, setComments] = useState(false);
+  const [box, setBox] = useState(undefined);
+  const [space, setSpace] = useState(undefined);
+
   const [change, setChange] = useState(0);
-  const changeRef = useRef(change);
-  changeRef.current = change;
+
 
   const w3c = useWeb3Injected();
   const ipfs = ipfsClient({
@@ -68,13 +74,13 @@ function ThingInfo({ jsonInterface }) {
     if (w3c && w3c.accounts && w3c.accounts[0] && contractInstance) {
       fetchOnMD();
       fetchTokenUri();
-      fetchUserDepositBalances(); 
+      fetchUserDepositBalances();
     }
 
   }, [w3c.accounts, contractInstance, tokenId, change]);
 
   useEffect(() => {
-    if(userDepositBalances && onMD && onMD.deposit) {
+    if (userDepositBalances && onMD && onMD.deposit) {
       let b = parseInt(userDepositBalances.balance);
       let rb = parseInt(userDepositBalances.requiredBalance);
       let rd = parseInt(onMD.deposit);
@@ -98,12 +104,27 @@ function ThingInfo({ jsonInterface }) {
     if (tokenUri) fetchData();
   }, [tokenId, tokenUri]); // empty array because we only run once
 
-
-
   useEffect(() => {
     setAccount(w3c.accounts[0]);
   }, [w3c.accounts]);
 
+  //3box
+  useEffect(() => {
+    if(comments) {
+      Box.openBox("0x4f37819c377F868Fd37c4b62cef732f6cAd4DB6B").then(setBox);
+    }
+  }, [comments]);
+
+  useEffect(() => {
+    if(box) {
+      box.openSpace("Things").then(setSpace);
+    }
+  }, [box]);
+
+  const toggle3Box = async (event) => {
+    event.preventDefault();
+    setComments(!comments);
+  };
 
 
   const fundMissingDeposit = async (event) => {
@@ -128,30 +149,42 @@ function ThingInfo({ jsonInterface }) {
 
   if (onMD && offMD) {
     return (
-      <ListGroup>
-        <ListGroup.Item><Badge variant="info">{onMD.id}</Badge> {offMD.name}</ListGroup.Item>
-        <ListGroup.Item>{offMD.description}</ListGroup.Item>
-        <ListGroup.Item>Owner: {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
-        <ListGroup.Item>Bearer: {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
-        <ListGroup.Item>Deposit required: {onMD.deposit} Wei</ListGroup.Item>
-        {(onMD.lock) ? <ListGroup.Item>Object is locked ! can't do anything</ListGroup.Item> : ''}
+      <div>
+        <ListGroup>
+          <ListGroup.Item><Badge variant="info">{onMD.id}</Badge> {offMD.name}</ListGroup.Item>
+          <ListGroup.Item>{offMD.description}</ListGroup.Item>
+          <ListGroup.Item>Owner: {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
+          <ListGroup.Item>Bearer: {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
+          <ListGroup.Item>Deposit required: {onMD.deposit} Wei</ListGroup.Item>
+          {(onMD.lock) ? <ListGroup.Item>Object is locked ! can't do anything</ListGroup.Item> : ''}
 
-        {((account !== onMD.bearer) && (account === onMD.owner) && (!onMD.lock)) 
-        ? <ListGroup.Item active action onClick={actionBorrow}>Get it back</ListGroup.Item> 
+          {((account !== onMD.bearer) && (account === onMD.owner) && (!onMD.lock))
+            ? <ListGroup.Item active action onClick={actionBorrow}>Get it back</ListGroup.Item>
+            : ''}
+
+          {((account !== onMD.bearer) && (missingDeposit <= 0) && (!onMD.lock))
+            ? <ListGroup.Item active action onClick={actionBorrow}>Borrow</ListGroup.Item>
+            : ''}
+
+          {((account !== onMD.bearer) && (account !== onMD.owner) && (missingDeposit > 0))
+            ? <ListGroup.Item active action onClick={fundMissingDeposit}>To borrow this object, your deposit is not enough, fund it ({missingDeposit} Wei)</ListGroup.Item>
+            : ''}
+
+          <ListGroup.Item><img width="200" src={"https://gateway.pinata.cloud/ipfs/" + offMD.image} alt="The object" /></ListGroup.Item>
+          <ListGroup.Item active action onClick={toggle3Box}>Toggle 3Box comments</ListGroup.Item>
+        </ListGroup>
+        {(comments)
+        ? (<ThreeBoxComments
+          spaceName="Things"
+          threadName={"token-"+tokenId}
+          adminEthAddr="0x4f37819c377F868Fd37c4b62cef732f6cAd4DB6B"
+          box={box}
+          currentUserAddr={window.ethereum.selectedAddress} />)
         : ''}
-
-        {((account !== onMD.bearer) && (missingDeposit <= 0) && (!onMD.lock))
-        ? <ListGroup.Item active action onClick={actionBorrow}>Borrow</ListGroup.Item> 
-        : ''}
-
-        {((account !== onMD.bearer) && (account !== onMD.owner) && (missingDeposit > 0)) 
-        ? <ListGroup.Item active action onClick={fundMissingDeposit}>To borrow this object, your deposit is not enough, fund it ({missingDeposit} Wei)</ListGroup.Item> 
-        : ''}
-
-        <ListGroup.Item><img width="200" src={"https://gateway.pinata.cloud/ipfs/" + offMD.image} alt="The object" /></ListGroup.Item>
-      </ListGroup>
+      </div>
     );
   } else if (onMD) {
+    // FIXME this one is too simple... we need to reflect the changes
     return (
       <ListGroup>
         <ListGroup.Item>tokenId: {onMD.id}</ListGroup.Item>
