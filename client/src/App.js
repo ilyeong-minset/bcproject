@@ -1,4 +1,4 @@
-import React /*useState, useEffect*/ from "react";
+import React , {useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 
@@ -40,7 +40,12 @@ import MyContract from "./contracts-build/Thing.json";
 import { Alert } from "react-bootstrap";
 
 function App() {
-  //window.ethereum.enable();
+
+  useEffect(() => {
+    window.ethereum.enable();
+    console.log("enabling...");
+  }, []);
+
 
   const targetNetworkId = 12345;
 
