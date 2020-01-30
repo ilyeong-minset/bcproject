@@ -21,7 +21,7 @@ export default function EthAddress({ v }) {
 
   return (
     <OverlayTrigger trigger="click" placement="bottom" overlay={popover(address)}>
-      <data>{display}</data>
+      <code>{display}</code>
     </OverlayTrigger>);
 }
 

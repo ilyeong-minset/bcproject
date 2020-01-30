@@ -1,4 +1,4 @@
-import React , { useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 
@@ -16,18 +16,17 @@ import UportInfo from "./components/UportInfo/index.js";
 import { useWeb3Injected } from "@openzeppelin/network/lib/react";
 //import logo from './eth-logo.svg';
 
-import "./bootstrap.simplex.min.css";
+//import "./bootstrap.simplex.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import MyContract from "./contracts-build/Thing.json";
 import { Alert } from "react-bootstrap";
 
 function App() {
-
   useEffect(() => {
     window.ethereum.enable();
     console.log("enabling...");
   }, []);
-
 
   const targetNetworkId = 12345;
 
@@ -40,10 +39,10 @@ function App() {
     "Deposit Management": "/deposit",
     "ENS Info": "/ensinfo",
     uPort: "/uport",
-    "IPFS Utils (upload)": "/ipfsutils",
+    "IPFS Utils (upload)": "/ipfsutils"
   };
 
-  const footerMessage = <>Made with Ethereum</>;
+  const footerMessage = <>Made with Ethereum & IPFS</>;
 
   return (
     <Router>
@@ -102,7 +101,7 @@ function App() {
         </Switch>
         <Footers message={footerMessage} />
         <Alert>
-          Current account: <code>{w3c.accounts[0]}</code>
+          Current account: {(w3c && w3c.accounts[0]) ? <code>{w3c.accounts[0]}</code> : ''}
         </Alert>
       </div>
     </Router>
@@ -110,4 +109,3 @@ function App() {
 }
 
 export default App;
-

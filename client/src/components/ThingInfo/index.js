@@ -3,10 +3,13 @@ import { useWeb3Injected } from '@openzeppelin/network/lib/react';
 import { ListGroup, Badge } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import EthAddress from "../EthAddress/index";
+import Blockie from "../Blockie/index";
 import ipfsClient from "ipfs-http-client";
-//import { FaBeer } from 'react-icons/fa';
 import ThreeBoxComments from "3box-comments-react";
 import Box from "3box";
+import { GiPayMoney, GiDiceSixFacesThree } from 'react-icons/gi';
+import { FaRegHandshake, FaHandHolding } from 'react-icons/fa';
+
 
 function ThingInfo({ jsonInterface }) {
 
@@ -25,6 +28,7 @@ function ThingInfo({ jsonInterface }) {
   const [box, setBox] = useState(undefined);
   const [space, setSpace] = useState(undefined);
 
+  const [delay, setDelay] = useState(12000)
   const [change, setChange] = useState(0);
 
 
@@ -35,10 +39,14 @@ function ThingInfo({ jsonInterface }) {
     protocol: "https"
   });
 
+
   useEffect(() => {
     //console.log("w3c.networkId", w3c.networkId);
     //console.log("jsonInterface", jsonInterface);
     loadContract(w3c, jsonInterface, w3c.networkId);
+    if(w3c.networkId < 10) {
+      setDelay(20000);
+    }
     //console.log(w3c, w3c);
     //console.log("we're fetching that contract", contractInstance);
   }, [jsonInterface, w3c.networkId]);
@@ -132,7 +140,7 @@ function ThingInfo({ jsonInterface }) {
     const tx = await contractInstance.methods.fundDeposit().send({ from: w3c.accounts[0], gasLimit: 500000, value: missingDeposit });
 
     // trigger an effect x,Y,Z sec later to update values
-    setTimeout(() => setChange(change + 1), 20000);
+    setTimeout(() => setChange(Math.random()), delay);
   };
 
 
@@ -142,7 +150,7 @@ function ThingInfo({ jsonInterface }) {
     contractInstance.methods.borrow(parseInt(tokenId)).send({ from: w3c.accounts[0] });
 
     // trigger an effect x,Y,Z sec later to update values
-    setTimeout(() => setChange(change + 1), 20000);
+    setTimeout(() => setChange(Math.random()), delay);
 
 
   }, [contractInstance]);
@@ -153,25 +161,25 @@ function ThingInfo({ jsonInterface }) {
         <ListGroup>
           <ListGroup.Item><Badge variant="info">{onMD.id}</Badge> {offMD.name}</ListGroup.Item>
           <ListGroup.Item>{offMD.description}</ListGroup.Item>
-          <ListGroup.Item>Owner: {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
-          <ListGroup.Item>Bearer: {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
+          <ListGroup.Item>Owner <Blockie address={onMD.owner} /> {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
+          <ListGroup.Item>Bearer <Blockie address={onMD.bearer} /> {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
           <ListGroup.Item>Deposit required: {onMD.deposit} Wei</ListGroup.Item>
           {(onMD.lock) ? <ListGroup.Item>Object is locked ! can't do anything</ListGroup.Item> : ''}
 
           {((account !== onMD.bearer) && (account === onMD.owner) && (!onMD.lock))
-            ? <ListGroup.Item active action onClick={actionBorrow}>Get it back</ListGroup.Item>
+            ? <ListGroup.Item active action onClick={actionBorrow}><FaHandHolding /> Get it back</ListGroup.Item>
             : ''}
 
           {((account !== onMD.bearer) && (missingDeposit <= 0) && (!onMD.lock))
-            ? <ListGroup.Item active action onClick={actionBorrow}>Borrow</ListGroup.Item>
+            ? <ListGroup.Item active action onClick={actionBorrow}><FaRegHandshake /> Borrow</ListGroup.Item>
             : ''}
 
           {((account !== onMD.bearer) && (account !== onMD.owner) && (missingDeposit > 0))
-            ? <ListGroup.Item active action onClick={fundMissingDeposit}>To borrow this object, your deposit is not enough, fund it ({missingDeposit} Wei)</ListGroup.Item>
+            ? <ListGroup.Item active action onClick={fundMissingDeposit}><GiPayMoney /> To borrow this object, your deposit is not enough, fund it ({missingDeposit} Wei)</ListGroup.Item>
             : ''}
 
           <ListGroup.Item><img width="200" src={"https://gateway.pinata.cloud/ipfs/" + offMD.image} alt="The object" /></ListGroup.Item>
-          <ListGroup.Item active action onClick={toggle3Box}>Toggle 3Box comments</ListGroup.Item>
+          <ListGroup.Item active action onClick={toggle3Box}><GiDiceSixFacesThree /> Toggle 3Box comments (you need a 3Box.io profile to use it)</ListGroup.Item>
         </ListGroup>
         {(comments)
         ? (<ThreeBoxComments
@@ -188,8 +196,8 @@ function ThingInfo({ jsonInterface }) {
     return (
       <ListGroup>
         <ListGroup.Item>tokenId: {onMD.id}</ListGroup.Item>
-        <ListGroup.Item>Owner: {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
-        <ListGroup.Item>Bearer: {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
+        <ListGroup.Item>Owner <Blockie address={onMD.owner} /> {(account === onMD.owner) ? 'You' : <EthAddress v={onMD.owner} />}</ListGroup.Item>
+        <ListGroup.Item>Bearer <Blockie address={onMD.bearer} /> {(account === onMD.bearer) ? 'You' : <EthAddress v={onMD.bearer} />}</ListGroup.Item>
         <ListGroup.Item>Deposit required: {onMD.deposit}</ListGroup.Item>
         {(account === onMD.bearer) ? '' : <ListGroup.Item action onClick={actionBorrow}>Borrow</ListGroup.Item>}
       </ListGroup>

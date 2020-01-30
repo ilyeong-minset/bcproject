@@ -19324,15 +19324,15 @@
     "version": "0.5.11+commit.c082d0b4.Emscripten.clang"
   },
   "networks": {
-    "12345": {
+    "4": {
       "links": {},
       "events": {},
-      "address": "0xA57B8a5584442B467b4689F1144D269d096A3daF",
-      "updated_at": 1580378333976
+      "address": "0x0786FBb194d2b377937FAc4690c8016C22335637",
+      "updated_at": 1580415767748
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-30T09:56:50.234Z",
+  "updatedAt": "2020-01-30T20:21:43.026Z",
   "devdoc": {
     "author": "Fred",
     "details": "Upgradable contract built on OpenZeppelin ERC721 implementation with extensions",

@@ -1,6 +1,7 @@
 import React from 'react';
 import {ListGroup} from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { GoChevronLeft } from 'react-icons/go';
 //import Emo from '../Emo/index.js';
 
 
@@ -16,7 +17,7 @@ export const Footers = ({noBack, message}) => {
   export const GoBack = () => {
     let history = useHistory(); // do we really need react router here?
   
-    return <ListGroup.Item action onClick={history.goBack}>← back</ListGroup.Item>;
+    return <ListGroup.Item action onClick={history.goBack}><GoChevronLeft /> back</ListGroup.Item>;
   }
   
   export const Footer = ({message}) => {

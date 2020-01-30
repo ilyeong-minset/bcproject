@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useWeb3Injected } from "@openzeppelin/network/lib/react";
 import { ListGroup } from "react-bootstrap";
+import { GiBattery25 } from 'react-icons/gi';
+import { MdSignalCellularConnectedNoInternet1Bar } from 'react-icons/md';
 //import EthAddress from '../EthAddress/index';
 
 const MessageWeb3 = () =>
@@ -20,7 +22,7 @@ const MessageWallet = () =>
 const MessageNetwork = ({ w3c, requiredNetwork }) =>
   w3c && w3c.networkId !== parseInt(requiredNetwork) ? (
     <ListGroup.Item variant="danger">
-      Wrong network {w3c.networkId} ({w3c.networkName}), change it in your
+      <MdSignalCellularConnectedNoInternet1Bar /> Wrong network {w3c.networkId} ({w3c.networkName}), change it in your
       wallet to {requiredNetwork}
     </ListGroup.Item>
   ) : (
@@ -45,8 +47,7 @@ function MessageBalance({ w3c, requiredBalance }) {
 
   return w3c && w3c.accounts && w3c.accounts[0] && balance < required ? (
     <ListGroup.Item variant="warning">
-      Balance is too low ({balance}), you probably won't be able to make any
-      transaction (go <a href="/fund">Fund account</a>)
+      <GiBattery25 /> Your balance is low ({balance}) (go <a href="/fund">Fund account</a>)
     </ListGroup.Item>
   ) : (
     ""

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useWeb3Injected } from '@openzeppelin/network/lib/react';
 import { ListGroup, Alert } from "react-bootstrap";
+import { GiPayMoney, GiReceiveMoney } from 'react-icons/gi';
 
 function Deposit({ jsonInterface }) {
 
@@ -9,6 +10,8 @@ function Deposit({ jsonInterface }) {
   const [balances, setBalances] = useState(undefined);
   //const [withdrawValue, setWithdrawValue] = useState(undefined);
   const [formFundValue, setFormFundValue] = useState(0);
+
+  const [delay, setDelay] = useState(12000)
   const [change, setChange] = useState(0);
 
 
@@ -19,6 +22,9 @@ function Deposit({ jsonInterface }) {
     //console.log("w3c.networkId", w3c.networkId);
     //console.log("jsonInterface", jsonInterface);
     loadContract(w3c, jsonInterface, w3c.networkId);
+    if(w3c.networkId < 10) {
+      setDelay(20000);
+    }
   }, [jsonInterface, w3c.networkId]);
 
   async function loadContract(w3c, jsonInterface, networkId) {
@@ -57,52 +63,17 @@ function Deposit({ jsonInterface }) {
 
   const fundDeposit = async (event) => {
     event.preventDefault();
-    const tx = await contractInstance.methods.fundDeposit().send({ from: w3c.accounts[0], gasLimit: 7000000, value: formFundValue });
+    const tx = await contractInstance.methods.fundDeposit().send({ from: w3c.accounts[0], gasLimit: 500000, value: formFundValue });
 
-    // trigger an effect 5 sec later to update values
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 5000);
-    // trigger an effect 14 sec later to update values
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 14000);
-
+    setTimeout(() => setChange(Math.random()), delay);
   };
 
-  /*  const fundDeposit = async () => {
-    const value = await contractInstance.methods.fundDeposit().send({from: w3c.accounts[0], value: 1000000});
-    setFundValue(value);
-  }; */
-
-
-  //const fundDeposit = (e) => {
-  //console.log("contractInstance", contractInstance);
-  //e.preventDefault();
-  //var who = e.target.value;
-  //this._addToLog(ERC20Token.options.address+".methods.balanceOf(" + who + ").call()");
-
-  //contractInstance.methods.fundDeposit().send({from: w3c.accounts[0]}).then(_value => setFundValue(_value))
-
-  /*var tx = contractInstance.methods.fundDeposit();
-  tx.estimateGas().then((r) => {
-    tx.send({gas: r, from: w3c.accounts[0]});
-  });*/
-  //}
-
-
-  // TODO I have to understand better useCallback
-  /*const withdrawDeposit = useCallback(() => {
-    setWithdrawValue(contractInstance.methods.withdrawDeposit().send({ from: w3c.accounts[0] }));
-  }, [contractInstance]);*/
 
   const withdrawDeposit = async () => {
 
     const tx = await contractInstance.methods.withdrawDeposit().send({ from: w3c.accounts[0] });
-    // trigger an effect 12 sec later to update values
-    setTimeout(() => {
-      setChange(change + 1);
-    }, 12000);
+
+    setTimeout(() => setChange(Math.random()), delay);
   };
 
 
@@ -125,15 +96,15 @@ function Deposit({ jsonInterface }) {
         <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
         <ListGroup>
           <ListGroup.Item>Your balance: {balances.balance}</ListGroup.Item>
-          <ListGroup.Item>
+          <ListGroup.Item active>
             <form onSubmit={fundDeposit}>
-              <label>Fund  <input type="text" value={formFundValue} onChange={handleChangeFormFundValue} />
+              <label><GiPayMoney /> Fund  <input type="text" value={formFundValue} onChange={handleChangeFormFundValue} />
               </label>
               <input type="submit" value="Send deposit funds to contract (in Wei)" />
             </form>
           </ListGroup.Item>
           <ListGroup.Item>Your required balance: {balances.requiredBalance} (according to the <a href="/things/borrowed">objects you are borrowing</a>)</ListGroup.Item>
-          <ListGroup.Item action onClick={withdrawDeposit}>Withdraw deposit</ListGroup.Item>
+          <ListGroup.Item active action onClick={withdrawDeposit}><GiReceiveMoney /> Withdraw deposit</ListGroup.Item>
         </ListGroup>
       </>
     );
