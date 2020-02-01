@@ -11,10 +11,7 @@ import "@openzeppelin/contracts-ethereum-package/contracts/utils/ReentrancyGuard
 
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Enumerable.sol";
-//import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Full.sol';
 import "@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721MetadataMintable.sol";
-//import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Mintable.sol';
-//import '@openzeppelin/contracts-ethereum-package/contracts/token/ERC721/ERC721Pausable.sol';
 
 /**
  * @title Thing
@@ -27,7 +24,6 @@ contract Thing is
     ERC721,
     ERC721Enumerable,
     ERC721MetadataMintable,
-    //, ERC721Pausable
     Ownable,
     Pausable,
     ReentrancyGuard {
@@ -35,15 +31,8 @@ contract Thing is
     using Counters for Counters.Counter;
     using Address for address payable;
 
-    // FEATURE 2 : token metadata (on-chain)
-    //struct Metadata {
-    //    uint256 deposit;
-        // FEATURE 5 : locking of token borrowing
-    //    bool lock;
-    //}
-
-    //mapping(uint256 => Metadata) private metadatas;
     // Initial on-chain metadata, can be extended but you have to put it at the end for upgradbility
+    // FEATURE 5 : locking of token borrowing
     mapping(uint256 => uint256) private deposits;
     mapping(uint256 => bool) private locks;
 
@@ -54,14 +43,11 @@ contract Thing is
     //Mapping from token ID to bearer
     mapping(uint256 => address) private _tokenBearer;
     // Mapping from bearer to number of beared token
-    mapping(address => Counters.Counter) private _borrowedTokensCount; //TODO not only bearer
+    mapping(address => Counters.Counter) private _borrowedTokensCount;
     // Mapping from bearer to list of beared token IDs
     mapping(address => uint256[]) private _bearedTokens;
     // Mapping from token ID to index of the bearer tokens list
     mapping(uint256 => uint256) private _bearedTokensIndex;
-
-    // FEATURE 5 : locking of token borrowing
-    //mapping(uint256 => bool) private locked; //array would be very inefficient for this since there is no contains function
 
     // FEATURE 6 : deposit
     mapping(address => uint256) private balances;
@@ -69,22 +55,7 @@ contract Thing is
     mapping(address => uint256) private requiredBalances;
 
     // EVENTS
-
-    /**
-   * @dev Initializer used for tests
-   */
-    /*
-  function initialize(address owner, address pauser, address minter) public initializer {
-    ERC721.initialize();
-    ERC721Enumerable.initialize();
-    //ERC721Metadata.initialize("Thing", "TG1");
-    ERC721Mintable.initialize(minter);
-    //ERC721Pausable.initialize(pauser);
-    /// do we need another/instead
-    Pausable.initialize(pauser);
-    Ownable.initialize(owner);
-    ReentrancyGuard.initialize();
-  }*/
+    // I removed events on puropose for now as they consume a lot of gas
 
     /**
    * @dev replace the contructor in the context of an upgradable contract, must always be called manually when creating a contract
@@ -100,9 +71,6 @@ contract Thing is
         Ownable.initialize(msg.sender); // candidate for gas saving
         ReentrancyGuard.initialize();
     }
-
-
-    // BIIIIGGG TODO fallback function ???
 
     // FEATURE 1 : killable contract
     /*
@@ -199,7 +167,6 @@ contract Thing is
      * @param tokenId uint256 ID of the token to be borrowed
      */
     function borrow(uint256 tokenId) public {
-        //TODO require process
         //require(bearerOf(tokenId) == from, "Things: transfer of token that is not beared");
         _borrowFrom(bearerOf(tokenId), msg.sender, tokenId);
     }
@@ -401,15 +368,11 @@ contract Thing is
             bool lock
         )
     {
-        //Metadata memory metadata = metadatas[tokenId];
-
         id = tokenId;
         tokenURI = this.tokenURI(tokenId);
-        //deposit = metadata.deposit;
         deposit = deposits[tokenId];
         owner = ownerOf(tokenId);
         bearer = bearerOf(tokenId);
-        //lock = metadata.lock;
         lock = locks[tokenId];
     }
 

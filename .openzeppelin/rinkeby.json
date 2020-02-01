@@ -450,6 +450,13 @@
         "implementation": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
         "admin": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713",
         "kind": "Upgradeable"
+      },
+      {
+        "address": "0xeBaD5d52513bb48Ea6002126c7fcf760c7D975f3",
+        "version": "0.1.0",
+        "implementation": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
+        "admin": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713",
+        "kind": "Upgradeable"
       }
     ]
   },
