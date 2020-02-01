@@ -11,7 +11,7 @@ function Deposit({ jsonInterface }) {
   //const [withdrawValue, setWithdrawValue] = useState(undefined);
   const [formFundValue, setFormFundValue] = useState(0);
 
-  const [delay, setDelay] = useState(12000)
+  const [delay, setDelay] = useState(10000)
   const [change, setChange] = useState(0);
 
 
@@ -23,7 +23,7 @@ function Deposit({ jsonInterface }) {
     //console.log("jsonInterface", jsonInterface);
     loadContract(w3c, jsonInterface, w3c.networkId);
     if(w3c.networkId < 10) {
-      setDelay(20000);
+      setDelay(22000);
     }
   }, [jsonInterface, w3c.networkId]);
 

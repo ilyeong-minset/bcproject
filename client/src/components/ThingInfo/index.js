@@ -28,7 +28,7 @@ function ThingInfo({ jsonInterface }) {
   const [box, setBox] = useState(undefined);
   const [space, setSpace] = useState(undefined);
 
-  const [delay, setDelay] = useState(12000)
+  const [delay, setDelay] = useState(10000)
   const [change, setChange] = useState(0);
 
 

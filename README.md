@@ -73,6 +73,9 @@ Also, I made most of the generic components developed easly reusable on https://
 
 - URL on ENS http://app.etherbase.eth (to resolve it please set first Metamask on Mainnet as this is where ENS live) or via gateway http://app.etherbase.eth.link, then the deployement is on Rinkeby testnet
 
+NOTE: all features do not work well on localhost because they depends on rinkeby or the mainnet (ENS, uPort, 3Box)
+NOTE: The interface is reactive, but as testnets are quite slow and I wanted to be sure it catch it you have to wait sometime 10-20 sec for the UI to update
+
 ## Commands
 
 Make sure you have git & Node.js 10 (I do not advise Node.js 12 there are always problems with scrypt)
