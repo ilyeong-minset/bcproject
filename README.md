@@ -43,6 +43,7 @@ The owner can get back the physical possession of its objects/tokens without dep
 - Social features with 3Box
 - Modern web stack (all written with React new Hook API)
 - Mobile first (it works & look better on Metamask mobile !)
+- UX : familiar & simple UI with some guidance & indicators to work with dApp
 
 (I'm absolutely not a web developer I had to learn from scratch a few month ago, so some JS & React code might be hacky)
 
@@ -68,9 +69,9 @@ Also, I made most of the generic components developed easly reusable on https://
 
 ## Demo
 
-- [ ] Link to demo/screencast https://www.youtube.com/watch?v=kt1rh8UPga4
+- [x] Link to demo/screencast https://www.youtube.com/watch?v=kt1rh8UPga4
 
-- URL on ENS http://app.etherbase.eth (to resolve it please set first Metamask on Mainnet as this is where ENS live) or via gateway http://app.etherbase.eth.link
+- URL on ENS http://app.etherbase.eth (to resolve it please set first Metamask on Mainnet as this is where ENS live) or via gateway http://app.etherbase.eth.link, then the deployement is on Rinkeby testnet
 
 ## Commands
 
@@ -225,7 +226,7 @@ uPort services are very very slow (both on the web & in the app), but here again
 - [x] All tests pass
 - [x] At least one of the contracts implements a circuit breaker / emergency stop pattern.
   - Yes, all senstive functions are protected by whenNotPaused & contract can be paused by the admin, and it is tested 
-- [ ] Project includes a file called design_pattern_decisions.md that adequately describes the design patterns implemented in the project
+- [x] Project includes a file called design_pattern_decisions.md that adequately describes the design patterns implemented in the project
 - [ ] Project includes a file called avoiding_common_attacks.md that explains at least 2 common attacks and how the app mitigates user risk. 
 - [ ] Project includes a file called deployed_addresses.txt that describes where the deployed testnet contracts live (which testnet and address)
 - [x] Project uses IPFS
@@ -246,7 +247,7 @@ uPort services are very very slow (both on the web & in the app), but here again
   - There is also resoving of the admin account with ENS, check `EnsInfo` / `/ensinfo` on Mainnet
   - The admin can also be identified though ENS on 3Box https://3box.io/0x4f37819c377f868fd37c4b62cef732f6cad4db6b/wall (on Mainnet)
   - See configuration https://app.ens.domains/name/app.etherbase.eth and its subdomain on Mainnet
-  - [] TODO A name registered on the ENS resolves to the contract, verifiable on rinkeby.etherscan.io/contract_name
+  - [ ] TODO A name registered on the ENS resolves to the contract, verifiable on rinkeby.etherscan.io/contract_name
 
 ## Future improvements
 
