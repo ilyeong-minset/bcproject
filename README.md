@@ -90,6 +90,8 @@ You then can choose to (a) work only with Truffle or try (b) Open Zeppelin SDK (
 so, first start ganache
 `ganache-cli --deterministic --gasLimit 8000000 --networkId 12345`
 
+and then of course
+`npm install`
 
 ### (a) Deploy with Truffle only
 
