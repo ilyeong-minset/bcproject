@@ -1,4 +1,4 @@
-# design_pattern_decisions.md
+# Design pattern decisions
 
 ## Standards based & reuse
 

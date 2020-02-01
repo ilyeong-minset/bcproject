@@ -1,4 +1,4 @@
-# avoiding_common_attacks.md
+# Avoiding common attacks
 
 Several design & implementation decisions have been taken to ensure the security of this application:
 

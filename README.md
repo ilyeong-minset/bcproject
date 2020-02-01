@@ -1,4 +1,4 @@
-# README.md
+# Things
 
 ## What does it do?
 
