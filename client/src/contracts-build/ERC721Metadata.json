@@ -4222,7 +4222,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-01-30T20:21:43.066Z",
+  "updatedAt": "2020-02-01T21:03:18.025Z",
   "devdoc": {
     "methods": {
       "approve(address,uint256)": {

@@ -2645,7 +2645,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3357,
+                        "referencedDeclaration": 3359,
                         "src": "4330:5:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_Thing_$782",
@@ -9584,7 +9584,7 @@
                           "name": "this",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3356,
+                          "referencedDeclaration": 3358,
                           "src": "14437:4:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_contract$_Thing_$782",
@@ -11803,7 +11803,7 @@
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 3357,
+                        "referencedDeclaration": 3359,
                         "src": "4330:5:1",
                         "typeDescriptions": {
                           "typeIdentifier": "t_super$_Thing_$782",
@@ -18742,7 +18742,7 @@
                           "name": "this",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 3356,
+                          "referencedDeclaration": 3358,
                           "src": "14437:4:1",
                           "typeDescriptions": {
                             "typeIdentifier": "t_contract$_Thing_$782",
@@ -19327,12 +19327,12 @@
     "4": {
       "links": {},
       "events": {},
-      "address": "0xeBaD5d52513bb48Ea6002126c7fcf760c7D975f3",
-      "updated_at": 1580579090248
+      "address": "0xD570C50bD2Bc9CcA43b4d668681221a213ADB11a",
+      "updated_at": 1580591089077
     }
   },
   "schemaVersion": "3.0.16",
-  "updatedAt": "2020-02-01T17:41:24.703Z",
+  "updatedAt": "2020-02-01T21:03:17.986Z",
   "devdoc": {
     "author": "Fred",
     "details": "Upgradable contract built on OpenZeppelin ERC721 implementation with extensions",

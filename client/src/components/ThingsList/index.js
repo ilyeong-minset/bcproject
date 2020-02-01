@@ -113,14 +113,14 @@ function ThingsList({ jsonInterface, query }) {
   if (tokenIds && (tokenIds.length > 0)) {
     return (
       <ListGroup>
-        <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
+        {/*<Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>*/}
         {tokenIds.map(x => <ListGroup.Item action href={"/things/" + x} key={x}><ThingItem tokenId={x} contractInstance={contractInstance} ipfs={ipfs} /></ListGroup.Item>)}
       </ListGroup>
     );
   } else {
     return (
       <ListGroup>
-        <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
+        {/*<Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>*/}
         <ListGroup.Item>Nothing / Loading...</ListGroup.Item>
       </ListGroup>
     );

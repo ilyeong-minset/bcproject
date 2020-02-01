@@ -91,46 +91,42 @@ so, first start ganache
 ### (a) Deploy with Truffle only
 
 Clone the project & I always start by cleaning things up
-`rm build/contracts/* .openzeppelin/dev-* client/src/contracts-build/*`
-
-`truffle compile`
-
-`truffle migrate`
+- `rm build/contracts/* .openzeppelin/dev-* client/src/contracts-build/*`
+- `truffle compile`
+- `truffle migrate`
 
 **Important**: since the contract is written with an upgradable pattern you have to initialize it 
 
-`truffle develop`
+- `truffle develop`
 
 in `truffle(develop)>` 
-`let instance = await Thing.deployed()`
-`instance.initialize2()`
+- `let instance = await Thing.deployed()`
+- `instance.initialize2()`
 
 (the "2" in initialize**2**() is very important)
 
 then you need to mint a few tokens
 
 in `truffle(develop)>` 
-`instance.mint("QmYM4unPgkeLPDcg3vmez2fxYo2ByPWWyUDv18KXknPs4r",100)`
-`instance.mint("QmXtKE3m6gzcTquJU8kxS3SmMveX9HcGWvnF9opgLEcc8t",250)`
-`instance.mint("QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo",120)`
-`instance.mint("QmSXwJFtG2w2XAhmRckFsjJ2fBmvHak8VaktjsjrcVGYr4",1000)`
+- `instance.mint("QmYM4unPgkeLPDcg3vmez2fxYo2ByPWWyUDv18KXknPs4r",100)`
+- `instance.mint("QmXtKE3m6gzcTquJU8kxS3SmMveX9HcGWvnF9opgLEcc8t",250)`
+- `instance.mint("QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo",120)`
+- `instance.mint("QmSXwJFtG2w2XAhmRckFsjJ2fBmvHak8VaktjsjrcVGYr4",1000)`
 
 ### (b) Deploy with OpenZeppelin SDK (if you want to test the upgradability)
 
 I always start by cleaning things up
-`rm build/contracts/* .openzeppelin/dev-* client/src/contracts-build/*`
-
-`truffle compile`
-
-`oz create -n development --init initialize2`
+- `rm build/contracts/* .openzeppelin/dev-* client/src/contracts-build/*`
+- `truffle compile`
+- `oz create -n development --init initialize2`
 in the interaction, select the Thing contract
 
 Mint a few tokens to test :
 
-`oz send-tx -n development --method mint --args QmYM4unPgkeLPDcg3vmez2fxYo2ByPWWyUDv18KXknPs4r,100`
-`oz send-tx -n development --method mint --args QmXtKE3m6gzcTquJU8kxS3SmMveX9HcGWvnF9opgLEcc8t,250`
-`oz send-tx -n development --method mint --args QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo,120`
-`oz send-tx -n development --method mint --args QmSXwJFtG2w2XAhmRckFsjJ2fBmvHak8VaktjsjrcVGYr4,1000`
+- `oz send-tx -n development --method mint --args QmYM4unPgkeLPDcg3vmez2fxYo2ByPWWyUDv18KXknPs4r,100`
+- `oz send-tx -n development --method mint --args QmXtKE3m6gzcTquJU8kxS3SmMveX9HcGWvnF9opgLEcc8t,250`
+- `oz send-tx -n development --method mint --args QmZkz49E39Vzk4uvW59t4LhoLvdWSGfGKBBZYKTnZswqeo,120`
+- `oz send-tx -n development --method mint --args QmSXwJFtG2w2XAhmRckFsjJ2fBmvHak8VaktjsjrcVGYr4,1000`
 
 #### Upgrades
 
@@ -161,9 +157,9 @@ NOTE: I do not test all the base ERC721 & OpenZeppelin Contracts functionalities
 
 The React web app can be tested, I use yarn but npm works too:
 
-`cd client`
-`npm install`
-`npm run start`
+- `cd client`
+- `npm install`
+- `npm run start`
 
 NOTE: With all the IPFS & 3Box related dependencies the app get quiet heavy, so it might take a while
 
@@ -227,8 +223,8 @@ uPort services are very very slow (both on the web & in the app), but here again
 - [x] At least one of the contracts implements a circuit breaker / emergency stop pattern.
   - Yes, all senstive functions are protected by whenNotPaused & contract can be paused by the admin, and it is tested 
 - [x] Project includes a file called design_pattern_decisions.md that adequately describes the design patterns implemented in the project
-- [ ] Project includes a file called avoiding_common_attacks.md that explains at least 2 common attacks and how the app mitigates user risk. 
-- [ ] Project includes a file called deployed_addresses.txt that describes where the deployed testnet contracts live (which testnet and address)
+- [x] Project includes a file called avoiding_common_attacks.md that explains at least 2 common attacks and how the app mitigates user risk. 
+- [x] Project includes a file called deployed_addresses.txt that describes where the deployed testnet contracts live (which testnet and address)
 - [x] Project uses IPFS
   - It features ERC721 off-chain metadata hosted on IPFS
   - Images are also hosted on IPFS
@@ -247,7 +243,7 @@ uPort services are very very slow (both on the web & in the app), but here again
   - There is also resoving of the admin account with ENS, check `EnsInfo` / `/ensinfo` on Mainnet
   - The admin can also be identified though ENS on 3Box https://3box.io/0x4f37819c377f868fd37c4b62cef732f6cad4db6b/wall (on Mainnet)
   - See configuration https://app.ens.domains/name/app.etherbase.eth and its subdomain on Mainnet
-  - [ ] TODO A name registered on the ENS resolves to the contract, verifiable on rinkeby.etherscan.io/contract_name
+  - [x] As it is an upgradable contract, the proxy is contract0.app.etherbase.eth , the logic contract is contract0.app.etherbase.eth
 
 ## Future improvements
 

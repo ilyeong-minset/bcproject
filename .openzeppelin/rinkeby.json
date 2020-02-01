@@ -1,7 +1,7 @@
 {
   "contracts": {
     "Thing": {
-      "address": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
+      "address": "0x1f9Fec6E9a780dE9Ddc883Cb4bf30f7Bcdc33a58",
       "constructorCode": "60806040526140ff806100136000396000f3fe",
       "bodyBytecodeHash": "6a66dd6c5b1bacad1aef9afc67e9bc12f29393487e02474cfa612c6a473ffe0c",
       "localBytecodeHash": "7d92947d26faa0fc29eaada20f525ac8d410b5f9c2d5b1ea4991c0c17f05fc6c",
@@ -351,7 +351,7 @@
           "label": "deposits",
           "astId": 95,
           "type": "t_mapping<t_uint256>",
-          "src": "2038:44:1"
+          "src": "1550:44:1"
         },
         {
           "contract": "Thing",
@@ -359,7 +359,7 @@
           "label": "locks",
           "astId": 99,
           "type": "t_mapping<t_bool>",
-          "src": "2088:38:1"
+          "src": "1600:38:1"
         },
         {
           "contract": "Thing",
@@ -367,7 +367,7 @@
           "label": "counterTokenIds",
           "astId": 101,
           "type": "t_struct<Counters.Counter>",
-          "src": "2175:40:1"
+          "src": "1687:40:1"
         },
         {
           "contract": "Thing",
@@ -375,7 +375,7 @@
           "label": "_tokenBearer",
           "astId": 105,
           "type": "t_mapping<t_address>",
-          "src": "2298:48:1"
+          "src": "1810:48:1"
         },
         {
           "contract": "Thing",
@@ -383,7 +383,7 @@
           "label": "_borrowedTokensCount",
           "astId": 109,
           "type": "t_mapping<t_struct<Counters.Counter>>",
-          "src": "2405:65:1"
+          "src": "1917:65:1"
         },
         {
           "contract": "Thing",
@@ -391,7 +391,7 @@
           "label": "_bearedTokens",
           "astId": 114,
           "type": "t_mapping<t_array:dyn<t_uint256>>",
-          "src": "2554:51:1"
+          "src": "2043:51:1"
         },
         {
           "contract": "Thing",
@@ -399,7 +399,7 @@
           "label": "_bearedTokensIndex",
           "astId": 118,
           "type": "t_mapping<t_uint256>",
-          "src": "2675:54:1"
+          "src": "2164:54:1"
         },
         {
           "contract": "Thing",
@@ -407,7 +407,7 @@
           "label": "balances",
           "astId": 122,
           "type": "t_mapping<t_uint256>",
-          "src": "2936:44:1"
+          "src": "2252:44:1"
         },
         {
           "contract": "Thing",
@@ -415,7 +415,7 @@
           "label": "requiredBalances",
           "astId": 126,
           "type": "t_mapping<t_uint256>",
-          "src": "3096:52:1"
+          "src": "2412:52:1"
         }
       ],
       "warnings": {
@@ -431,31 +431,10 @@
   "proxies": {
     "Thing/Thing": [
       {
-        "address": "0x0339Fb4d595966c8bDeeAb3496FB76293b3029F6",
+        "address": "0xD570C50bD2Bc9CcA43b4d668681221a213ADB11a",
         "version": "0.1.0",
-        "implementation": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
-        "admin": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713",
-        "kind": "Upgradeable"
-      },
-      {
-        "address": "0xDF0F0A6Afa25AA196bBc6D4990A5072Bc4B35403",
-        "version": "0.1.0",
-        "implementation": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
-        "admin": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713",
-        "kind": "Upgradeable"
-      },
-      {
-        "address": "0x0786FBb194d2b377937FAc4690c8016C22335637",
-        "version": "0.1.0",
-        "implementation": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
-        "admin": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713",
-        "kind": "Upgradeable"
-      },
-      {
-        "address": "0xeBaD5d52513bb48Ea6002126c7fcf760c7D975f3",
-        "version": "0.1.0",
-        "implementation": "0x7231570F6e169eB3B7c85A78c07970C2D61Ce1D4",
-        "admin": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713",
+        "implementation": "0x1f9Fec6E9a780dE9Ddc883Cb4bf30f7Bcdc33a58",
+        "admin": "0x4b3137343e6735eDaEb3789C31032Eb9b25c3CfB",
         "kind": "Upgradeable"
       }
     ]
@@ -469,6 +448,6 @@
     }
   },
   "proxyAdmin": {
-    "address": "0x6445766D72d1993B7df39cab8283EBb0bbFFC713"
+    "address": "0x4b3137343e6735eDaEb3789C31032Eb9b25c3CfB"
   }
 }

@@ -93,7 +93,7 @@ function Deposit({ jsonInterface }) {
   }*/ else {
     return (
       <>
-        <Alert key="info-contract-address" variant="info">Contract address: {contractAddress}</Alert>
+        {/*<Alert key="info-contract-address" variant="info">Contract address: {contractAddress} </Alert>*/}
         <ListGroup>
           <ListGroup.Item>Your balance: {balances.balance}</ListGroup.Item>
           <ListGroup.Item active>

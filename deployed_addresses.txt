@@ -1,2 +1,4 @@
 testnet: Rinkeby
-address: TODO
+addresses: 
+- AdminUpgradeabilityProxy contract : 0xebad5d52513bb48ea6002126c7fcf760c7d975f3
+- Logic contracts : 0x7231570f6e169eb3b7c85a78c07970c2d61ce1d4

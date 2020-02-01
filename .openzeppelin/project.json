@@ -13,7 +13,7 @@
     "compilerSettings": {
       "optimizer": {
         "enabled": false,
-        "runs": "200"
+        "runs": "1000"
       }
     },
     "solcVersion": "0.5.11"
