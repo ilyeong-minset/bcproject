@@ -102,9 +102,9 @@ Clone the project & I always start by cleaning things up
 
 **Important**: since the contract is written with an upgradable pattern you have to initialize it 
 
-- `truffle develop`
+- `truffle console`
 
-in `truffle(develop)>` 
+in `truffle(development)>` 
 - `let instance = await Thing.deployed()`
 - `instance.initialize2()`
 
